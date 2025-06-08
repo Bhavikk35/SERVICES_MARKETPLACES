@@ -3,14 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CommissionZero Freelancers</title>
+    <title>ServiceHub - Professional Services Marketplace</title>
     <style>
         * {
+            /* background-image: url('images/back1.png'); */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            
         }
+        body {
+    background-image: url('images/back5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;        /* FIX: Don't tile the image */
+    background-attachment: fixed;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 60px;
+    min-height: 100vh;
+    position: relative;                  /* Important: Needed for ::before to work correctly */
+    z-index: 0;                          /* Send body behind pseudo-element if needed */
+}
+
+/* Optional overlay – adjust opacity or remove entirely */
+body::before {
+    content: "";
+    position: fixed;                    /* FIX: Cover the entire screen regardless of scroll */
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.1); /* FIX: Lower opacity for a faint overlay */
+    z-index: -1;                        /* FIX: Push behind body content */
+}
+.background-wrapper {
+    background-image: url('images/back5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Increased z-index to appear above the overlay */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    background-color: #1E88E5;
+    color: white;
+    height: 60px; /* Fixed height for navbar */
+}
+
+/* Ensure all content appears above the background overlay */
+.container, 
+.hero, 
+.services,
+.project-types,
+.providers,
+#about,
+#contact {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Section */
+.hero {
+    /* padding-top: 80px; */
+
+    text-align: center;
+    color: #333;
+    /* margin-top: 60px; */
+    margin-bottom: 0;
+    background-color: transparent;
+    
+    position: relative;
+    z-index: 2;
+    padding-bottom: 80px; /* Remove bottom padding */
+}
 
         /* body {
             
@@ -19,53 +100,52 @@
             background-color: #F5F5F5;
             color: #212121;
         }  */
+/*         hey */
 
          .container {
+          
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 0px;
       
         }
-
+        .about-container {
+          
+          max-width: 1200px;
+          margin: 0 auto;
+          /* padding: 0 0px; */
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+          padding-left: 3rem;
+          padding-right: 3rem;
+    background-color: rgba(255, 255, 255, 0.9);;
+    /* scroll-margin-top: 1000px; */
+      }
+      #about{
+        scroll-margin-top: 80px;
+      }
         /* Header */
         header {
-            background: white; /* आधीचा gradient काढ */
+            background: white;
             color: #333;
-            /* padding: 1rem 0; */
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Add search bar styles */
+        .search-container {
+            display: none;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #333;
+        .search-bar {
+            display: none;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
+        .search-input {
+            display: none;
         }
 
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
+        .search-button {
+            display: none;
         }
 
         .btn {
@@ -111,43 +191,61 @@
 
 
         /* Hero Section */
-        .hero {
-            background: white; /* आधी gradient होता */
-            color: #333;
-            padding: 7rem 0;
-            text-align: center;
-            margin-top: 40px;
-            /* margin-bottom: 30px; */
-        }
-
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: #333;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+           background-color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            color: #333;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+             background-color: transparent;
         }
 
         /* Service Categories */
         .services {
-            background-color: white;
-            padding: 4rem 0;
-          
-           
+            background-color: transparent;
+            /* background-image: url('images/back1.png'); */
+            padding: 1rem 1rem;
+            margin-top: 60px;
+            z-index: 1;
+            background-size: cover;
+    /* background-position: center;
+    background-repeat: repeat;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 60px;
+    min-height: 100vh;
+    opacity: 1; */
         }
+        #services{
+            scroll-margin-top:1px;
+        }
+        /* section {
+  scroll-margin-top: 1px; /* Adjust based on your navbar height 
+} */
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            margin-top: 100px;
+            /* margin-top: 200px; */
+            padding: 1rem 0;
             color: #333;
+            background-color: transparent;
+            margin-left: 20rem;
+            margin-right: 20rem;
         }
 
         .service-grid {
-            background-color: white;
+            background-color: transparent;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
@@ -155,7 +253,7 @@
         }
 
         .service-card {
-            background: white;
+           background-color:  rgba(255, 255, 255, 0.9);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
@@ -166,6 +264,16 @@
 
         .service-card:hover {
             transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .service-card p {
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         .service-icon {
@@ -193,30 +301,77 @@
         }
 
         .type-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  margin: 20px;
+  width: 100%;
+}
 
-        .type-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
+.type-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
 
-        .type-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
+.type-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.type-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.type-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+  text-align: center; 
+}
+
+.type-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 12.5rem;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.type-card ul li::before {
+  content: '✔';
+  padding-left: 11.5rem;
+  position: absolute;
+  left: 0;
+  color: green;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.image-grid img:hover {
+  transform: scale(1.05);
+}
 
         /* Provider Listings */
         .providers {
             padding: 4rem 0;
-            background: white;
+            background: transparent;
             display: none;
         }
 
@@ -224,6 +379,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
+            background-color:transparent;
         }
 
         .provider-card {
@@ -266,10 +422,20 @@
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
+        .provider-name {
+            color: black;
+            /* background-color: black; */
+        }
 
         .rating {
-            color: #ffa500;
+            color: green;
             margin-bottom: 0.5rem;
+        }
+        .provider-experience{
+            color: black;
+        }
+        .provider-specialized{
+            color: black;
         }
 
         .provider-actions {
@@ -321,7 +487,7 @@
 }
 
 .btn-calendar {
-    background: #9C27B0;
+    background: #FF9800;
     color: white;
 }
 
@@ -342,7 +508,7 @@
 }
 
 .btn-calendar:hover {
-    background: #7b1fa2;
+    background: #fb8c00;
     transform: scale(1.05);
 }
 .contact-box {
@@ -482,6 +648,9 @@
             .type-grid {
                 grid-template-columns: 1fr;
             }
+            .about-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
         }
 
         .hidden {
@@ -495,13 +664,19 @@
   scroll-behavior: smooth;
 }
 .navbar {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 2rem;
+  padding: 1rem 1rem;
   background-color: #1E88E5;
   color: white;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -553,9 +728,10 @@
     font-size: 1rem;
 }
 .search-bar-wrapper {
-    margin: 20px auto;
+    margin: 20px auto 0; /* Adjust top margin, remove bottom margin */
     max-width: 600px;
-    padding: 0 15px;
+    padding: 0 10px;
+    background: transparent;
 }
 
 .search-bar-wrapper input {
@@ -571,31 +747,135 @@
 .search-bar-wrapper input:focus {
     border-color: #007bff;
 }
+.project-description {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-left: 22rem;
+    margin-right: 22rem;
+}
 
+.project-description h3 {
+    margin-top: 0;
+    color: #333;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+.project-description p {
+    margin-top: 0;
+    color: #333;
+    padding-left:2rem;
+    
+}
+.project-description ul ,
+    .type-card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Ensure text is more readable */
+.hero h1, 
+.hero p,
+.section-title,
+.service-card h3,
+.service-card p,
+.type-card h3,
+.type-card p,
+.provider-name,
+.provider-experience,
+.provider-specialized {
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    font-weight: 500;
+}
+
+.service-card,
+.type-card,
+.provider-card {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Add contact section styles */
+#contact {
+    /* background-color: transparent !important; */
+    position: relative;
+    z-index: 2;
+    scroll-margin-top: 15px;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center; /* Center children horizontally */
+    max-width: 600px;
+    margin: 0 auto; /* Center the whole form horizontally */
+}
+
+#contact form input,
+#contact form textarea,
+#contact form button {
+    width: 80%;
+    max-width: 800px;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#contact form button {
+    background-color: #667eea;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#contact form button:hover {
+    background-color: #5a6fd6;
+    transform: translateY(-2px);
+}
+
+.contactUs{
+    background-color: rgba(255, 255, 255, 0.8); 
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    padding-bottom: 3rem;
+}
+/* #tender {
+    scroll-margin-top: 75px;
+} */
+#home{
+    scroll-margin-top: 75px;
+}
 
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar">
+        <div class="navbar">
             <div class="logo">CommissionZero</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <!-- <li><a href="#tender">Tender</a></li> -->
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-
             </ul>
             <div class="auth-buttons">
                 <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
                 <button class="btn btn-primary" onclick="openModal('signupModal')">Sign Up</button>
             </div>
-        </nav>
+        </div>
     </header>
-
+    
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
             <h1>Professional Services at Your Doorstep</h1>
             
@@ -610,15 +890,34 @@
             </div>
         </div>
         
+          </section>
+          <section class="container" style="padding: 2rem;">
+            <h2>Welcome Contractor</h2>
+            <button onclick="openManageCardModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Manage My Provider Card</button>
+            <button onclick="showContractorTenders()" class="btn btn-secondary">View All Tenders & Quote</button>
+
+          </section>
           
-   
+          <section id="contractorTenders" class="container" >
+            <!-- <h2>Available Tenders</h2> -->
+            <div id="tenderList" style="margin-bottom: 3rem;"></div>
+          <!-- This should be fully hidden until Show Materials is clicked -->
+<div id="materialBox" style="display: none; background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-top: 2rem;">
+    <h3>Suggested Materials</h3>
+    <ul id="materialList"></ul>
+  </div>
+  
+          </section>
+          
    
       
       
     <!-- Services Section -->
+    <!-- <div class="background-wrapper"> -->
     <section id="services" class="services">
+      
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
+            <h2 class="section-title" style="padding-top: 100px;">Our Services</h2>
             <div class="service-grid">
                 <div class="service-card" onclick="selectService('solar')">
                     <div class="service-icon">☀️</div>
@@ -648,45 +947,48 @@
             </div>
         </div>
     </section>
+    <!-- </div> -->
+  
+
 
     <!-- Project Type Selection -->
-    <section id="project-types" class="project-types hidden">
-        <div class="container">
-            <h2 class="section-title">Choose Your Project Type</h2>
-            <div class="type-grid">
-                <div class="type-card" onclick="showProviders('contractors')">
-                    <h3> 🏠Home Projects</h3>
-                    <p>Large scale projects requiring experienced contractors with proper licensing and equipment</p>
-                    <ul style="text-align: left; margin-top: 1rem;">
-                        <li>Industrial installations</li>
-                        <li>Home renovations</li>
-                        <li>Commercial projects</li>
-                        <li>Licensed contractors</li>
-                    </ul>
-                </div>
-                <div class="type-card" onclick="showProviders('freelancers')">
-                    <h3>🔧 Small Projects</h3>
-                    <p>Quick fixes and small jobs handled by skilled freelancers</p>
-                    <ul style="text-align: left; margin-top: 1rem;">
-                        <li>Minor repairs</li>
-                        <li>Quick installations</li>
-                        <li>Maintenance work</li>
-                        <li>Budget-friendly options</li>
-                    </ul>
-                </div>
+   <!-- Project Type Selection -->
+<section id="project-types" class="project-types hidden">
+    <div class="container">
+        <h2 class="section-title">Choose Your Project Type</h2>
+        <div class="type-grid">
+            <div class="type-card" onclick="showProviders('contractors')">
+                <h3></h3>
+                <p></p>
+                <img class="project-image" style="width:300px; height:200px; margin-top:10px; border-radius: 8px; display: none;">
+                <ul style="text-align: left; margin-top: 1rem;"></ul>
+               
             </div>
-        </div>
-    </section>
+            <div class="type-card" onclick="showProviders('freelancers')">
+                <h3></h3>
+                <p></p>
+                <img class="project-image" style="width:300px; height:200px; margin-top:10px; border-radius: 8px; display: none;">
+                <ul style="text-align: left; margin-top: 1rem;"></ul>
+               
+            </div>
+        </div> 
+    </div>
+</section>
 
     <!-- Provider Listings -->
     <section id="providers" class="providers">
         <div class="container">
             <h2 class="section-title" id="providers-title">Available Providers</h2>
+    
+            <!-- 👇 INSERT THIS HERE -->
+            <div id="project-description" class="project-description"></div>
+    
             <div class="provider-grid" id="provider-grid">
                 <!-- Provider cards will be generated here -->
             </div>
         </div>
     </section>
+    
     <div id="providerContactBox" class="contact-box hidden">
         <h3>Contact Provider</h3>
         <p id="providerName"></p>
@@ -694,39 +996,62 @@
         <button class="btn">Call</button>
         <button class="btn">Message</button>
     </div>
-    <section id="about">
-        <div class="container">
-    
-          <h2 class="section-title">About Us</h2>
+   
+           <section id="tender" class="container" style="padding: 2rem;">
+                <h2>Post a Tender</h2>
+                <form id="tenderForm">
+                  <input type="text" id="tenderTitle" placeholder="Work Title" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+                  <textarea id="tenderDescription" placeholder="Work Description" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea><br>
+                  <input type="text" id="tenderLocation" placeholder="Location" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+                  <input type="date" id="tenderDeadline" required style="padding: 10px; margin-bottom: 10px;"><br>
+                  <button type="submit" class="btn btn-primary">Post Tender</button>
+                </form> 
+              </section>
+<!--               
+               Tender Listing Section 
+              <section id="tender-list" class="container" style="padding: 2rem;">
+              
+                <div id="tenderCards"></div>
+              </section>
+         
+              <section id="about">
+                <div class="about-grid">
+             -->
+         <h2 class="section-title">About Us</h2>
+         <div class="about-container">
           <h3><p>CommissionZero is a platform that connects verified contractors and freelancers with customers for a variety of home and business services...</p></h3>
           <p style="font-size: 1.1rem; color: #555;">
             SkillConnect is a modern labor marketplace that bridges the gap between skilled workers and those in need of their services. 
             Whether you're looking for an electrician, plumber, carpenter, or painter, our platform helps you find trusted professionals in your area quickly and easily.
         </p>
         </div>
+    </div>
       </section>
-      <section id="contact" style="padding: 4rem 2rem;  background-color: white; text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Contact Us</h2>
-            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
+      <section id="contact"  style="padding: 4rem 2rem; text-align: center;">
+    
+        <h2 class="section-title" >Contact Us</h2>
+        <div class="contactUs">
+        <div style="max-width: 700px; margin: 0 auto;">
+            
+            <!-- <h2 class="section-title" >Contact Us</h2> -->
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem; margin-top: 3rem;">
                 Have questions or need help? Reach out to us!
             </p>
     
             <div style="text-align: left; margin-bottom: 2rem;">
-                <p><strong>📞 Phone:</strong> 7066679997/9076400787</p>
-                <p><strong>📧 Email:</strong> <a href="mailto:yourname@example.com">CommissionZero@example.com</a></p>
-                <p><strong>📸 Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@CommissionZero</a></p>
-                <p><strong>📘 Facebook:</strong> <a href="https://facebook.com/yourpage" target="_blank">facebook.com/CommissionZero</a></p>
+                <h3><strong>📞 Phone:</strong> 7066679997/9076400787</h3>
+                <h3><strong>📧 Email:</strong> <a href="mailto:yourname@example.com">CommissionZero@example.com</a></h3>
+                <h3><strong>📸 Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@CommissionZero</a></h3>
+                <h3><strong>📘 Facebook:</strong> <a href="https://facebook.com/yourpage" target="_blank">facebook.com/CommissionZero</a></h3>
             </div>
-    
-            <form style="display: flex; flex-direction: column; gap: 1rem;">
-                <input type="text" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;">
-                <input type="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;">
-                <textarea placeholder="Your Message" rows="5" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;"></textarea>
-                <button type="submit" style="padding: 0.75rem; border: none; border-radius: 5px; background-color: #667eea; color: white; font-size: 1rem; cursor: pointer;">
-                    Send Message
-                </button>
-            </form>
+        </div>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        
         </div>
     </section>
     <!-- Login Modal -->
@@ -833,6 +1158,49 @@
     <button class="btn">Call</button>
     <button class="btn">Message</button>
   </div>
+  <div id="manageCardModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('manageCardModal')">&times;</span>
+      <h2>Manage My Provider Card</h2>
+      <form onsubmit="updateProviderCard(event)">
+        <div class="form-group">
+          <label for="cardService">Service Type</label>
+          <select id="cardService">
+            <option value="solar">Solar</option>
+            <option value="electrical">Electrical</option>
+            <option value="carpentry">Carpentry</option>
+            <option value="plumbing">Plumbing</option>
+            <option value="painting">Painting</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cardExperience">Experience (years)</label>
+          <input type="number" id="cardExperience" min="0">
+        </div>
+        <div class="form-group">
+          <label for="cardDescription">Service Description</label>
+          <textarea id="cardDescription" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="cardPrice">Typical Price Range</label>
+          <input type="text" id="cardPrice">
+        
+          <label for="calendar">Availability Dates</label>
+          <input type="date" id="calendarDate">
+          <button type="button" onclick="addAvailability()">➕ Add Date</button>
+          
+          <ul id="availabilityList" style="margin-top: 10px;"></ul>
+        <hr>
+        
+        <label for="imageUpload">Upload Service Images</label>
+        <input type="file" id="imageUpload" accept="image/*" multiple onchange="previewImages(event)">
+        <div id="imagePreview" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: black; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Save Card</button>
+      </form>
+    </div>
+</div>
+ <!-- hey -->
   
   </body>
   </html>
@@ -856,7 +1224,131 @@
     // Optional: call filterProviders() initially if required
     // filterProviders(); 
 });
-      
+const projectDescriptions = {
+    solar: {
+        entireHome: {
+            title: "🏠 Entire Home Solar Installation",
+            description: "Full-scale solar power solutions for residential buildings.",
+            items: ["Roof panel installation", "Battery systems", "Grid integration", "Licensed solar technicians"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        },
+        smallWork: {
+            title: "🔧 Small Solar Jobs",
+            description: "Quick solar checks, inverter fixes, and maintenance tasks.",
+            items: ["Panel cleaning", "Inverter troubleshooting", "Wiring fixes", "Affordable service"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        }
+    },
+    electrical: {
+        entireHome: {
+            title: "🏠 Entire Home Electrical Setup",
+            description: "Complete wiring and electrical systems for your home.",
+            items: ["New home wiring", "Meter installations", "Lighting systems", "Certified electricians"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        },
+        smallWork: {
+            title: "🔧 Small Electrical Fixes",
+            description: "Fast help with switches, lights, and minor repairs.",
+            items: ["Socket repair", "Fan installation", "Circuit breaker fix", "Low-cost work"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        }
+    },
+    // Add similar entries for carpentry, plumbing, painting...
+    carpentry: {
+    entireHome: {
+        title: "🏠 Full Home Carpentry Work",
+        description: "Custom woodwork solutions for every room in your house.",
+        items: ["Modular furniture", "Wardrobe fitting", "Wooden flooring", "Experienced carpenters"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🔧 Small Carpentry Jobs",
+        description: "Minor fixes and furniture tweaks at affordable rates.",
+        items: ["Door alignment", "Shelf installation", "Table repair", "Polishing & touch-ups"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+},
+plumbing: {
+    entireHome: {
+        title: "🏠 Complete Home Plumbing",
+        description: "Plumbing installation for new and existing homes.",
+        items: ["Bathroom fittings", "Water line setup", "Sump & tank connection", "Certified plumbers"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🔧 Minor Plumbing Repairs",
+        description: "Fix leaking taps, choked drains, and pipe issues quickly.",
+        items: ["Leak fixing", "Drain cleaning", "Tap & faucet replacement", "Quick home visits"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+},
+painting: {
+    entireHome: {
+        title: "🏠 Full Home Painting",
+        description: "Interior and exterior painting with a clean finish.",
+        items: ["Wall preparation", "Interior/exterior painting", "Texture & designs", "Professional painters"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🎨 Small Painting Tasks",
+        description: "Touch-ups, patch fixes, and single-room painting.",
+        items: ["Wall touch-ups", "Single room paint", "Color consultation", "Low-cost jobs"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+}
+
+};
+
 
 
 
@@ -1011,22 +1503,142 @@
             document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function selectService(service) {
-            currentService = service;
-            document.getElementById('services').style.display = 'none';
-            document.getElementById('project-types').classList.remove('hidden');
+        function searchProviders() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const providerCards = document.querySelectorAll('.provider-card');
+            let hasResults = false;
+
+            providerCards.forEach(card => {
+                const name = card.querySelector('.provider-name').textContent.toLowerCase();
+                const specialized = card.querySelector('.provider-specialized').textContent.toLowerCase();
+                const experience = card.querySelector('.provider-experience').textContent.toLowerCase();
+
+                if (name.includes(searchInput) || 
+                    specialized.includes(searchInput) || 
+                    experience.includes(searchInput)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResultsMsg = document.getElementById('noResultsMessage') || createNoResultsMessage();
+            noResultsMsg.style.display = hasResults ? 'none' : 'block';
         }
 
-        function showProviders(type) {
-            currentProviderType = type;
-            document.getElementById('project-types').classList.add('hidden');
-            document.getElementById('providers').style.display = 'block';
-            
-            const title = document.getElementById('providers-title');
-            title.textContent = type === 'contractors' ? 'Available Contractors' : 'Available Freelancers';
-            
-            generateProviderCards();
+        function createNoResultsMessage() {
+            const msg = document.createElement('div');
+            msg.id = 'noResultsMessage';
+            msg.style.textAlign = 'center';
+            msg.style.padding = '2rem';
+            msg.style.color = '#666';
+            msg.innerHTML = 'No results found. Try different search terms.';
+            document.querySelector('.provider-grid').appendChild(msg);
+            return msg;
         }
+
+        // Add event listener for real-time search
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', searchProviders);
+            }
+        });
+
+        
+
+        function selectService(service) {
+    currentService = service;
+    document.getElementById('services').style.display = 'none';
+    document.getElementById('project-types').classList.remove('hidden');
+
+    const data = projectDescriptions[service];
+
+   // ENTIRE HOME
+const entireHome = document.querySelector('.type-card:nth-child(1)');
+entireHome.querySelector('h3').textContent = data.entireHome.title;
+entireHome.querySelector('p').textContent = data.entireHome.description;
+const entireList = entireHome.querySelector('ul');
+entireList.innerHTML = data.entireHome.items.map(item => `<li>${item}</li>`).join('');
+
+// Remove old images if any
+entireHome.querySelectorAll('img.project-image').forEach(img => img.remove());
+
+// Add multiple images
+if (data.entireHome.images) {
+    data.entireHome.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'project-image';
+        img.style = "width:200px; height:150px; margin:10px; border-radius: 8px;";
+        entireHome.appendChild(img);
+    });
+}
+
+// SMALL WORK
+const smallWork = document.querySelector('.type-card:nth-child(2)');
+smallWork.querySelector('h3').textContent = data.smallWork.title;
+smallWork.querySelector('p').textContent = data.smallWork.description;
+const smallList = smallWork.querySelector('ul');
+smallList.innerHTML = data.smallWork.items.map(item => `<li>${item}</li>`).join('');
+
+// Remove old images if any
+smallWork.querySelectorAll('img.project-image').forEach(img => img.remove());
+
+// Add multiple images
+if (data.smallWork.images) {
+    data.smallWork.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'project-image';
+        img.style = "width:200px; height:150px; margin:10px; border-radius: 8px;";
+        smallWork.appendChild(img);
+    });
+}
+        }
+
+function showProviders(type) {
+    currentProviderType = type; // 'contractors' or 'freelancers'
+
+    // Hide project types and show providers
+    document.getElementById('project-types').classList.add('hidden');
+    document.getElementById('providers').style.display = 'block';
+
+    // Update title
+    const title = document.getElementById('providers-title');
+    title.textContent = type === 'contractors' ? 'Available Contractors' : 'Available Freelancers';
+
+    // Show project description (based on selected service and project type)
+    showProjectDescription(type);
+
+    // Generate cards
+    generateProviderCards();
+}
+function showProjectDescription(type) {
+    const container = document.getElementById('project-description');
+
+    // Make sure service and type are valid
+    if (!projectDescriptions[currentService] || !projectDescriptions[currentService][type === 'contractors' ? 'entireHome' : 'smallWork']) {
+        container.innerHTML = "<p>No description available for this service.</p>";
+        return;
+    }
+
+    const data = projectDescriptions[currentService][type === 'contractors' ? 'entireHome' : 'smallWork'];
+
+    container.innerHTML = `
+        <h3>${data.title}</h3>
+        <p>${data.description}</p>
+         ${data.image ? `<img src="${data.image}" alt="${data.title}" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">` : ''}
+        <ul>
+            ${data.items.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+       
+    `;
+}
+
+
 
         function generateProviderCards() {
             const grid = document.getElementById('provider-grid');
@@ -1041,17 +1653,22 @@
     <div class="provider-header">
         <div class="provider-avatar">${provider.name.charAt(0)}</div>
         <div class="provider-info">
+            <div class="provider-name">
             <h4>${provider.name}</h4>
+            </div>
             <div class="rating">★★★★★ ${provider.rating}</div>
+            <div class="provider-experience">
             <p>${provider.experience} years experience • ${provider.projects} projects</p>
-            <p><strong>${provider.price}</strong></p>
+         </div>
         </div>
     </div>
+    <div class="provider-specialized">
     <p>Specialized in ${currentService} services with excellent track record.</p>
+    </div>
     <div class="provider-actions">
         <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
         <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}','${provider.contactNo}')">Contact</button>
-        <button class="btn-small btn-portfolio" onclick="viewPortfolio('${provider.name}')">Portfolio</button>
+        
         <button class="btn-small btn-calendar" onclick="viewCalendar('${provider.name}')">Calendar</button>
     </div>
     <div class="photo-gallery">
@@ -1080,14 +1697,19 @@
 
 function handleLogin(e) {
     e.preventDefault();
-    const userType = document.getElementById('userType').value;
-    if (userType === 'contractor') {
-        window.location.href = 'contractor-dashboard.html';
-    } else if (userType === 'freelancer') {
-        window.location.href = 'freelancer-dashboard.html';
-    } else {
-        window.location.href = 'customer-dashboard.html';
-    }
+    const email = document.getElementById('loginEmail').value;
+  const userType = document.getElementById('userType').value;
+
+  currentUser = { email, userType, name: email.split('@')[0] }; // temp
+  isLoggedIn = true;
+
+  if (userType === 'contractor') {
+    openManageCardModal(); // Open card immediately or redirect
+  } else if (userType === 'freelancer') {
+    window.location.href = 'freelancer-dashboard.html';
+  } else {
+    window.location.href = 'customer-dashboard.html';
+  }
 }
 function handleSignup(e) {
     e.preventDefault();
@@ -1175,13 +1797,13 @@ function renderProviders(providersToRender = null) {
             <div class="provider-header">
                 <div class="provider-avatar">${provider.name.charAt(0)}</div>
                 <div class="provider-info">
-                    <h4>${provider.name}</h4>
+                    <h4 class="provider-name">${provider.name}</h4>
                     <div class="rating">★★★★★ ${provider.rating}</div>
-                    <p>${provider.experience} years experience • ${provider.projects} projects</p>
+                    <p class="provider-experience">${provider.experience} years experience • ${provider.projects} projects</p>
                     <p><strong>${provider.price}</strong></p>
                 </div>
             </div>
-            <p>Specialized in ${currentService} services with excellent track record.</p>
+            <p class="provider-specialized">Specialized in ${currentService} services with excellent track record.</p>
             <div class="provider-actions">
                 <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
                 <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}', '${provider.contactNo}')">Contact</button>
@@ -1196,14 +1818,75 @@ function renderProviders(providersToRender = null) {
         `;
         grid.appendChild(card);
     });
+}let tenders = [];
+
+document.getElementById('tenderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const tender = {
+    id: Date.now(),
+    title: document.getElementById('tenderTitle').value,
+    description: document.getElementById('tenderDescription').value,
+    location: document.getElementById('tenderLocation').value,
+    deadline: document.getElementById('tenderDeadline').value,
+    quotes: []
+  };
+
+  tenders.push(tender);
+  renderTenders();
+  this.reset();
+});
+
+function renderTenders() {
+  const container = document.getElementById('tenderCards');
+  container.innerHTML = '';
+
+  tenders.forEach(tender => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style = 'padding: 1rem; margin: 1rem 0; border: 1px solid #ccc; border-radius: 10px;';
+
+    card.innerHTML = `
+      <h3>${tender.title}</h3>
+      <p>${tender.description}</p>
+      <p><strong>Location:</strong> ${tender.location}</p>
+      <p><strong>Deadline:</strong> ${tender.deadline}</p>
+      <input type="text" placeholder="Enter your quote" id="quote-${tender.id}" style="margin-top: 10px; padding: 8px; width: 70%;"><br>
+
+      <button onclick="submitQuote(${tender.id})" style="margin-left: 10px; padding: 8px;">Submit Quote</button>
+      <div id="quotes-${tender.id}" style="margin-top: 1rem;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function submitQuote(tenderId) {
+  const quoteInput = document.getElementById(`quote-${tenderId}`);
+  const quoteValue = quoteInput.value;
+
+  const tender = tenders.find(t => t.id === tenderId);
+  if (tender) {
+    tender.quotes.push(quoteValue);
+    showQuotes(tenderId);
+    quoteInput.value = '';
+  }
+}
+
+function showQuotes(tenderId) {
+  const quoteDiv = document.getElementById(`quotes-${tenderId}`);
+  const tender = tenders.find(t => t.id === tenderId);
+  quoteDiv.innerHTML = '<h4>Submitted Quotes:</h4><ul>' +
+    tender.quotes.map(q => `<li>${q}</li>`).join('') +
+    '</ul>';
 }
 
 
         function openChat(providerName) {
-            if (!isLoggedIn) {
-                alert('Please login to start a chat');
-                return;
-            }
+            // if (!isLoggedIn) {
+            //     alert('Please login to start a chat');
+            //     return;
+            // }
             
             document.getElementById('chatTitle').textContent = `Chat with ${providerName}`;
             document.getElementById('chatInterface').style.display = 'block';
@@ -1242,10 +1925,10 @@ function renderProviders(providersToRender = null) {
         }
 
         function contactProvider(providerName, providerContactNo) { 
-    if (!isLoggedIn) {
-        alert('Please login to contact providers');
-        return;
-    }
+    // if (!isLoggedIn) {
+    //     alert('Please login to contact providers');
+    //     return;
+    // }
 
     const contactBox = document.getElementById('providerContactBox');
     const providerNameText = document.getElementById('providerName');
@@ -1314,8 +1997,457 @@ function renderProviders(providersToRender = null) {
       portfolio.appendChild(img);
     });
   }
+  document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('searchInput');
+  const providerCards = document.querySelectorAll('.provider-card');
 
-  
+  searchInput.addEventListener('input', function () {
+    const searchValue = this.value.toLowerCase();
+
+    providerCards.forEach(card => {
+      const name = card.querySelector('.provider-name')?.textContent.toLowerCase() || '';
+      const skill = card.querySelector('.provider-specialized')?.textContent.toLowerCase() || '';
+
+      if (name.includes(searchValue) || skill.includes(searchValue)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+function openManageCardModal() {
+  document.getElementById('manageCardModal').style.display = 'block';
+}
+
+function updateProviderCard(e) {
+  e.preventDefault();
+
+  const service = document.getElementById('cardService').value;
+  const experience = parseInt(document.getElementById('cardExperience').value);
+  const description = document.getElementById('cardDescription').value;
+  const price = document.getElementById('cardPrice').value;
+
+  if (!contractors[service]) contractors[service] = [];
+
+  const updatedCard = {
+  name: currentUser.name,
+  rating: 4.0,
+  experience,
+  price,
+  description,
+  projects: 0,
+  contactNo: 'N/A',
+  photos: uploadedImages.map(img => img.name), // or Base64
+  availability: availabilityDates  // ✅ include selected dates
+};
+
+
+  // Replace existing entry if already present
+  const index = contractors[service].findIndex(c => c.name === currentUser.name);
+  if (index !== -1) {
+    contractors[service][index] = updatedCard;
+  } else {
+    contractors[service].push(updatedCard);
+  }
+
+  alert('Provider card updated!');
+  closeModal('manageCardModal');
+}
+// Sample tenders (simulate loading from DB)
+const userTenders = [
+  { id: 1, title: "Painting my 2BHK Flat", type: "painting", location: "Pune", deadline: "2025-06-15", description: "Need interior paint in 2 rooms." },
+  { id: 2, title: "Fix plumbing in kitchen", type: "plumbing", location: "Delhi", deadline: "2025-06-10", description: "Pipe leakage and sink replacement." },
+  { id: 3, title: "Complete Home Wiring", type: "electrical", location: "Bangalore", deadline: "2025-06-20", description: "Need full house electrical setup." }
+];
+
+// Material database
+
+const materialsRequired = {
+  painting: {
+    "Paint": {
+      "A Grade": ["Asian Paints", "Nerolac"],
+      "B Grade": ["Opus Paints", "Berger"],
+      "C Grade": ["Local Paint X"]
+    },
+    "Primer": {
+      "A Grade": ["Nerolac Primer"],
+      "B Grade": ["Berger Primer"]
+    },
+    "Brushes": {
+      "A Grade": ["Roller Brush"],
+      "B Grade": ["Flat Brush"],
+      "C Grade": ["Local Brush"]
+    },
+    "Putty": {
+      "A Grade": ["Birla White Putty"],
+      "B Grade": ["JK Wall Putty"]
+    },
+    "Masking Tape": {
+      "A Grade": ["3M Tape"],
+      "C Grade": ["Local Tape"]
+    }
+  },
+
+  plumbing: {
+    "Pipes": {
+      "A Grade": ["Astral CPVC Pipe", "Prince UPVC Pipe"],
+      "B Grade": ["Generic GI Pipe"],
+      "C Grade": ["Local PVC Pipe"]
+    },
+    "Sealants": {
+      "A Grade": ["Silicone Pro Sealant"],
+      "B Grade": ["Teflon Tape"]
+    },
+    "Valves": {
+      "A Grade": ["Hindware Ball Valve"],
+      "B Grade": ["Generic Gate Valve"],
+      "C Grade": ["Local Brass Valve"]
+    }
+  },
+
+  electrical: {
+    "Wires": {
+      "A Grade": ["Finolex", "Havells"],
+      "B Grade": ["Polycab"],
+      "C Grade": ["Local Wire Roll"]
+    },
+    "Switchboards": {
+      "A Grade": ["Legrand", "Anchor"],
+      "B Grade": ["Goldmedal"],
+      "C Grade": ["Generic Board"]
+    },
+    "Sockets": {
+      "A Grade": ["Legrand Socket"],
+      "B Grade": ["GM Socket"],
+      "C Grade": ["Local Socket"]
+    }
+  },
+
+  carpenter: {
+    "Plywood": {
+      "A Grade": ["Century Ply", "Greenply"],
+      "B Grade": ["Kitply"],
+      "C Grade": ["Local Plywood"]
+    },
+    "Nails & Screws": {
+      "A Grade": ["Stainless Steel Nails"],
+      "B Grade": ["Zinc Coated Screws"],
+      "C Grade": ["Local Iron Nails"]
+    },
+    "Hinges": {
+      "A Grade": ["Hettich Hinges"],
+      "B Grade": ["Godrej Hinges"],
+      "C Grade": ["Generic Hinges"]
+    },
+    "Glue & Adhesive": {
+      "A Grade": ["Fevicol SH", "Araldite"],
+      "C Grade": ["Local Wood Adhesive"]
+    },
+    "Tools": {
+      "A Grade": ["Bosch Drill", "Makita Circular Saw"],
+      "C Grade": ["Local Chisel Set"]
+    }
+  }
+};
+
+
+
+function showContractorTenders() {
+    
+  const list = document.getElementById('tenderList');
+  list.innerHTML = '';
+
+  userTenders.forEach(tender => {
+    const div = document.createElement('div');
+    div.className = 'tender-card';
+    div.style = 'border: 1px solid #ccc; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; background: white;';
+
+    div.innerHTML = `
+  <h3>${tender.title}</h3>
+  <p><strong>Work Type:</strong> ${tender.type}</p>
+  <p><strong>Location:</strong> ${tender.location}</p>
+  <p><strong>Deadline:</strong> ${tender.deadline}</p>
+  <p>${tender.description}</p>
+
+<div style="margin-top: 10px;">
+  <input type="number" id="price-${tender.id}" placeholder="Enter Rs./sq.ft" style="padding: 8px; width: 30%;" oninput="updateQuoteFromCheckboxes(${tender.id})">
+</div>
+<div style="margin-top: 10px;">
+<textarea id="quote-${tender.id}" readonly rows="5" placeholder="Auto-generated quote will appear here" style="padding: 8px; width: 90%; background-color: #eee; margin-top: 8px;"></textarea>
+<div style="margin-top: 6px;">
+<div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+  <button 
+    onclick="saveTemplate(${tender.id})" 
+    style="background-color: #4CAF50; color: white; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer;">
+    💾 Save Template
+  </button>
+
+  <button 
+    onclick="loadTemplate(${tender.id})" 
+    style="background-color: #2196F3; color: white; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer;">
+    📂 Load Template
+  </button>
+
+  <button 
+    onclick="submitContractorQuote(${tender.id})" 
+    style="background-color: #f57c00; color: white; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer;">
+    ✅ Submit Quote
+  </button>
+
+  <button 
+    onclick="showMaterials('${tender.type}', ${tender.id})" 
+    style="background-color: #9C27B0; color: white; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer;">
+    🔍 Show Materials
+  </button>
+</div>
+
+  <div id="materials-${tender.id}" class="material-box" style="display: none; margin-top: 1rem; background: #f4f4f4; padding: 1rem; border-radius: 8px;">
+    <h4>Suggested Materials</h4>
+    <div class="material-checkboxes" id="checkboxes-${tender.id}"></div>
+
+    <div style="margin-top: 1rem;">
+      <input type="text" id="customMaterial-${tender.id}" placeholder="Enter custom material..." style="padding: 6px; width: 60%;">
+      <button onclick="addCustomMaterial(${tender.id})" style="padding: 6px 12px; margin-left: 8px;">Add</button>
+    </div>
+  </div>
+`;
+
+    list.appendChild(div);
+  });
+}
+
+function showMaterials(type, tenderId) {
+  const checkboxContainer = document.getElementById(`checkboxes-${tenderId}`);
+  const materialBox = document.getElementById(`materials-${tenderId}`);
+  const categories = materialsRequired[type];
+
+  checkboxContainer.innerHTML = '';
+
+  if (!categories) {
+    checkboxContainer.innerHTML = '<p>No materials found for this type.</p>';
+    return;
+  }
+
+  Object.entries(categories).forEach(([categoryName, gradeMap]) => {
+    const categoryTitle = document.createElement('h5');
+    categoryTitle.textContent = categoryName;
+    categoryTitle.style = "margin-top: 1rem; margin-bottom: 0.5rem;";
+    checkboxContainer.appendChild(categoryTitle);
+
+    Object.entries(gradeMap).forEach(([grade, products]) => {
+      const gradeTitle = document.createElement('p');
+      gradeTitle.innerHTML = `<strong>${grade}</strong>`;
+      gradeTitle.style = "margin-bottom: 0.3rem; margin-left: 1rem;";
+      checkboxContainer.appendChild(gradeTitle);
+
+      products.forEach(product => {
+        const wrapper = document.createElement('div');
+        wrapper.style = "margin-bottom: 6px; margin-left: 2rem; display: flex; align-items: center;";
+
+        // 📷 Product image
+        const img = document.createElement('img');
+        img.src = `images/products/${product.replace(/\s+/g, '-').toLowerCase()}.png`;
+        img.alt = product;
+        img.style = "width: 30px; height: 30px; margin-right: 10px;";
+
+        // ✅ Checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = product;
+        checkbox.dataset.grade = grade;
+        checkbox.id = `${product}-${tenderId}`;
+        checkbox.onchange = () => updateQuoteFromCheckboxes(tenderId);
+
+        // 🏷️ Label
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = product;
+        label.style = "margin-left: 8px; margin-right: 10px;";
+
+        // 🔢 Quantity input
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'number';
+        quantityInput.min = 1;
+        quantityInput.value = 1;
+        quantityInput.dataset.product = product;
+        quantityInput.dataset.grade = grade;
+        quantityInput.className = `quantity-${tenderId}`; // To find later
+        quantityInput.style = "width: 60px;";
+        quantityInput.oninput = () => updateQuoteFromCheckboxes(tenderId);
+
+        // 👉 Add all to wrapper
+        wrapper.appendChild(img);
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(label);
+        wrapper.appendChild(quantityInput);
+
+        checkboxContainer.appendChild(wrapper);
+      });
+    });
+  });
+
+  materialBox.style.display = 'block';
+}
+
+
+function updateQuoteFromCheckboxes(tenderId) {
+  const container = document.getElementById(`checkboxes-${tenderId}`);
+  const quoteInput = document.getElementById(`quote-${tenderId}`);
+  const priceInput = document.getElementById(`price-${tenderId}`);
+  const price = priceInput.value;
+
+  const checkboxes = container.querySelectorAll('input[type="checkbox"]:checked');
+
+  let quoteText = '';
+  if (price) {
+    quoteText += `Rs. ${price} per sq.ft for:\n`;
+  }
+
+  checkboxes.forEach(cb => {
+    const grade = cb.dataset.grade || 'N/A';
+    const product = cb.value;
+
+    // 🔍 Find corresponding quantity input next to this checkbox
+    const quantityInput = cb.parentElement.querySelector(`input[type="number"]`);
+    const quantity = quantityInput ? quantityInput.value : 1;
+
+    quoteText += `- ${product} (${grade}) × ${quantity}\n`;
+  });
+
+  quoteInput.value = quoteText.trim();
+}
+
+
+
+function submitContractorQuote(tenderId) {
+  const quote = document.getElementById(`quote-${tenderId}`).value.trim();
+  if (!quote) {
+    alert('Please select materials and enter a price first.');
+    return;
+  }
+  alert(`Quote submitted for Tender #${tenderId}:\n${quote}`);
+}
+
+function addCustomMaterial(tenderId) {
+  const input = document.getElementById(`customMaterial-${tenderId}`);
+  const value = input.value.trim();
+  if (!value) return;
+
+  const checkboxContainer = document.getElementById(`checkboxes-${tenderId}`);
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.value = value;
+  checkbox.dataset.grade = 'Custom'; // ✅ set grade as "Custom"
+  checkbox.id = `custom-${value}-${tenderId}`;
+  checkbox.checked = true;
+  checkbox.onchange = () => updateQuoteFromCheckboxes(tenderId);
+
+  const label = document.createElement('label');
+  label.htmlFor = checkbox.id;
+  label.textContent = value;
+  label.style = "margin-left: 8px;";
+
+  const wrapper = document.createElement('div');
+  wrapper.style = "margin-top: 5px; margin-left: 2rem;";
+  wrapper.appendChild(checkbox);
+  wrapper.appendChild(label);
+
+  checkboxContainer.appendChild(wrapper);
+  input.value = '';
+  updateQuoteFromCheckboxes(tenderId);
+}
+const productPrices = {
+  "Asian Paints": 25,
+  "Nerolac": 22,
+  "Opus Paints": 18,
+  "Local Paint X": 12,
+  // etc...
+};
+document.getElementById(`estimate-${tenderId}`).textContent = `Estimated Total: ₹${total}`;
+function saveTemplate(tenderId) {
+  const quote = document.getElementById(`quote-${tenderId}`).value.trim();
+  if (!quote) {
+    alert('Nothing to save. Please generate a quote first.');
+    return;
+  }
+  localStorage.setItem(`quote-template-${tenderId}`, quote);
+  alert('Template saved!');
+}
+
+function loadTemplate(tenderId) {
+  const saved = localStorage.getItem(`quote-template-${tenderId}`);
+  if (!saved) {
+    alert('No saved template found for this tender.');
+    return;
+  }
+  document.getElementById(`quote-${tenderId}`).value = saved;
+}
+let availabilityDates = [];
+let uploadedImages = [];
+
+function addAvailability() {
+  const dateInput = document.getElementById('calendarDate');
+  const date = dateInput.value;
+
+  if (date && !availabilityDates.includes(date)) {
+    availabilityDates.push(date);
+    renderAvailability();
+  } else if (availabilityDates.includes(date)) {
+    alert("Date already added!");
+  }
+}
+
+function renderAvailability() {
+  const list = document.getElementById('availabilityList');
+  list.innerHTML = '';
+
+  availabilityDates.forEach((date, index) => {
+    const li = document.createElement('li');
+    li.style = "margin-bottom: 6px;";
+    li.innerHTML = `
+      ${date}
+      <button onclick="removeAvailability(${index})" style="margin-left: 10px; background: red; color: white; border: none; padding: 2px 6px; border-radius: 4px; cursor: pointer;">❌</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function removeAvailability(index) {
+  availabilityDates.splice(index, 1);
+  renderAvailability();
+}
+function previewImages(event) {
+  const preview = document.getElementById('imagePreview');
+  const files = Array.from(event.target.files);
+  preview.innerHTML = '';
+  uploadedImages = files; // Store for saving later
+
+  files.forEach((file, index) => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const container = document.createElement('div');
+      container.style = "position: relative;";
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style = "width: 80px; height: 80px; object-fit: cover; border: 1px solid #ccc;";
+      const btn = document.createElement('button');
+      btn.textContent = '❌';
+      btn.style = "position: absolute; top: 0; right: 0; background: red; color: white; border: none; cursor: pointer;";
+      btn.onclick = () => {
+        files.splice(index, 1);
+        previewImages({ target: { files: files } }); // Refresh
+      };
+      container.appendChild(img);
+      container.appendChild(btn);
+      preview.appendChild(container);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+
     </script>
 </body>
 </html>
