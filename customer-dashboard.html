@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommissionZero - Professional Services Marketplace</title>
+    <style>
+        * {
+            /* background-image: url('images/back1.png'); */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+        body {
+    background-image: url('images/back5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;        /* FIX: Don't tile the image */
+    background-attachment: fixed;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 60px;
+    min-height: 100vh;
+    position: relative;                  /* Important: Needed for ::before to work correctly */
+    z-index: 0;                          /* Send body behind pseudo-element if needed */
+}
+
+/* Optional overlay – adjust opacity or remove entirely */
+body::before {
+    content: "";
+    position: fixed;                    /* FIX: Cover the entire screen regardless of scroll */
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.1); /* FIX: Lower opacity for a faint overlay */
+    z-index: -1;                        /* FIX: Push behind body content */
+}
+.background-wrapper {
+    background-image: url('images/back5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Increased z-index to appear above the overlay */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    background-color: #1E88E5;
+    color: white;
+    height: 60px; /* Fixed height for navbar */
+}
+
+/* Ensure all content appears above the background overlay */
+.container, 
+.hero, 
+.services,
+.project-types,
+.providers,
+#about,
+#contact {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Section */
+.hero {
+    /* padding-top: 80px; */
+
+    text-align: center;
+    color: #333;
+    /* margin-top: 60px; */
+    margin-bottom: 0;
+    background-color: transparent;
+    
+    position: relative;
+    z-index: 2;
+    padding-bottom: 80px; /* Remove bottom padding */
+}
+
+        /* body {
+            
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #F5F5F5;
+            color: #212121;
+        }  */
+
+         .container {
+          
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 0px;
+      
+        }
+        .about-container {
+          
+          max-width: 1200px;
+          margin: 0 auto;
+          /* padding: 0 0px; */
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+          padding-left: 3rem;
+          padding-right: 3rem;
+    background-color: rgba(255, 255, 255, 0.9);;
+      }
+      #about{
+        scroll-margin-top: 80px;
+      }
+        /* Header */
+        header {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Add search bar styles */
+        .search-container {
+            display: none;
+        }
+
+        .search-bar {
+            display: none;
+        }
+
+        .search-input {
+            display: none;
+        }
+
+        .search-button {
+            display: none;
+        }
+
+        .btn {
+           
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            
+        }
+        .btn-primary {
+            background:white;
+            color: black;
+        }
+
+        .btn-secondary {
+            background:white;
+            color: black;
+           /* border: 2px solid white; */
+        }
+        .btn-getStarted {
+            background:black;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-signUp {
+            background:black;
+            color: white;
+
+        }
+        .btn-login {
+            background:black;
+            color: white;
+
+        }
+
+
+        /* Hero Section */
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+           background-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+             background-color: transparent;
+        }
+
+        /* Service Categories */
+        .services {
+            background-color: transparent;
+            /* background-image: url('images/back1.png'); */
+            padding: 1rem 1rem;
+            margin-top: 60px;
+            z-index: 1;
+            background-size: cover;
+    /* background-position: center;
+    background-repeat: repeat;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 60px;
+    min-height: 100vh;
+    opacity: 1; */
+        }
+        #services{
+            scroll-margin-top: 1px;
+        }
+
+        /* section {
+  scroll-margin-top: 80px; /* Adjust based on your navbar height 
+} */
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            /* margin-top: 200px; */
+            padding: 1rem 0;
+            color: #333;
+            background-color: transparent;
+            margin-left: 20rem;
+            margin-right: 20rem;
+        }
+
+        .service-grid {
+            background-color: transparent;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+           background-color:  rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .service-card p {
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Project Type Selection */
+        .project-types {
+            padding: 4rem 0;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .type-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  margin: 20px;
+  width: 100%;
+}
+
+.type-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.type-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.type-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+  /* padding-left: 10rem; */
+}
+
+.type-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+  text-align: center; 
+}
+
+.type-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 12.5rem;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.type-card ul li::before {
+  content: '✔';
+  padding-left: 11.5rem;
+  position: absolute;
+  left: 0;
+  color: green;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.image-grid img:hover {
+  transform: scale(1.05);
+}
+
+        /* Provider Listings */
+        .providers {
+            padding: 4rem 0;
+            background: transparent;
+            display: none;
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            background-color:transparent;
+        }
+
+        .provider-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: block; /* Ensure cards are displayed by default */
+}
+
+.provider-card.hidden {
+    display: none; /* Hide cards that do not match the search query */
+}
+
+        .provider-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .provider-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .provider-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .provider-name {
+            color: black;
+            /* background-color: black; */
+        }
+
+        .rating {
+            color: green;
+            margin-bottom: 0.5rem;
+        }
+        .provider-experience{
+            color: black;
+        }
+        .provider-specialized{
+            color: black;
+        }
+
+        .provider-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-small:hover {
+    background-color: #0056b3;
+}
+
+.btn-chat, .btn-contact, .btn-portfolio, .btn-calendar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Specific button colors */
+.btn-chat {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-contact {
+    background: #2196F3;
+    color: white;
+}
+
+.btn-portfolio {
+    background: #FF9800;
+    color: white;
+}
+
+.btn-calendar {
+    background: #FF9800;
+    color: white;
+}
+
+/* Hover effects */
+.btn-chat:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.btn-contact:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+
+.btn-portfolio:hover {
+    background: #fb8c00;
+    transform: scale(1.05);
+}
+
+.btn-calendar:hover {
+    background: #fb8c00;
+    transform: scale(1.05);
+}
+.contact-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 2000;
+}
+
+.contact-box.hidden {
+    display: none;
+}
+
+
+    /* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* allow modal scrolling on mobile */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+
+    /* NEW: scrollable and mobile-friendly */
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            height: 250px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f8f9fa;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .type-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+        html {
+  scroll-behavior: smooth;
+}
+.navbar {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: #1E88E5;
+  color: white;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0 auto; /* Center the links */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.provider-photo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.search-box {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.search-bar-wrapper {
+    margin: 20px auto 0; /* Adjust top margin, remove bottom margin */
+    max-width: 600px;
+    padding: 0 10px;
+    background: transparent;
+}
+
+.search-bar-wrapper input {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s border-color;
+}
+
+.search-bar-wrapper input:focus {
+    border-color: #007bff;
+}
+.project-description {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-left: 22rem;
+    margin-right: 22rem;
+}
+
+.project-description h3 {
+    margin-top: 0;
+    color: #333;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+.project-description p {
+    margin-top: 0;
+    color: #333;
+    padding-left:2rem;
+    
+}
+.project-description ul ,
+    .type-card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Ensure text is more readable */
+.hero h1, 
+.hero p,
+.section-title,
+.service-card h3,
+.service-card p,
+.type-card h3,
+.type-card p,
+.provider-name,
+.provider-experience,
+.provider-specialized {
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    font-weight: 500;
+}
+
+.service-card,
+.type-card,
+.provider-card {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Add contact section styles */
+#contact {
+    /* background-color: transparent !important; */
+    position: relative;
+    z-index: 2;
+    scroll-margin-top: 15px;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center; /* Center children horizontally */
+    max-width: 600px;
+    margin: 0 auto; /* Center the whole form horizontally */
+}
+
+#contact form input,
+#contact form textarea,
+#contact form button {
+    width: 80%;
+    max-width: 800px;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#contact form button {
+    background-color: #667eea;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#contact form button:hover {
+    background-color: #5a6fd6;
+    transform: translateY(-2px);
+}
+
+.contactUs{
+    background-color: rgba(255, 255, 255, 0.8); 
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    padding-bottom: 3rem;
+}
+#tender {
+    scroll-margin-top: 75px;
+}
+#home{
+    scroll-margin-top: 75px;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">CommissionZero</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#tender">Tender</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signupModal')">Sign Up</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Professional Services at Your Doorstep</h1>
+            
+            <p>Connect with verified contractors and freelancers for all your service needs</p>
+            <button class="btn btn-getStarted " onclick="scrollToServices()">Get Started</button>
+            <div class="search-bar-wrapper">
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search by Name, Skill, or Service"
+              />
+            </div>
+        </div>
+        
+          </section>
+   
+   
+      
+      
+    <!-- Services Section -->
+    <!-- <div class="background-wrapper"> -->
+    <section id="services" class="services">
+      
+        <div class="container">
+            <h2 class="section-title" style="padding-top: 100px;">Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card" onclick="selectService('solar')">
+                    <div class="service-icon">☀️</div>
+                    <h3>Solar Installation</h3>
+                    <p>Professional solar panel installation and maintenance</p>
+                </div>
+                <div class="service-card" onclick="selectService('electrical')">
+                    <div class="service-icon">⚡</div>
+                    <h3>Electrical Services</h3>
+                    <p>Certified electricians for all electrical needs</p>
+                </div>
+                <div class="service-card" onclick="selectService('carpentry')">
+                    <div class="service-icon">🔨</div>
+                    <h3>Carpentry</h3>
+                    <p>Expert carpenters for furniture and woodwork</p>
+                </div>
+                <div class="service-card" onclick="selectService('plumbing')">
+                    <div class="service-icon">🔧</div>
+                    <h3>Plumbing</h3>
+                    <p>Licensed plumbers for repairs and installations</p>
+                </div>
+                <div class="service-card" onclick="selectService('painting')">
+                    <div class="service-icon">🎨</div>
+                    <h3>Painting</h3>
+                    <p>Professional painters for interior and exterior work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- </div> -->
+  
+
+
+    <!-- Project Type Selection -->
+   <!-- Project Type Selection -->
+<section id="project-types" class="project-types hidden">
+    <div class="container">
+        <h2 class="section-title">Choose Your Project Type</h2>
+        <div class="type-grid">
+            <div class="type-card" onclick="showProviders('contractors')">
+                <h3></h3>
+                <p></p>
+                <img class="project-image" style="width:300px; height:200px; margin-top:10px; border-radius: 8px; display: none;">
+                <ul style="text-align: left; margin-top: 1rem;"></ul>
+               
+            </div>
+            <div class="type-card" onclick="showProviders('freelancers')">
+                <h3></h3>
+                <p></p>
+                <img class="project-image" style="width:300px; height:200px; margin-top:10px; border-radius: 8px; display: none;">
+                <ul style="text-align: left; margin-top: 1rem;"></ul>
+               
+            </div>
+        </div> 
+    </div>
+</section>
+
+    <!-- Provider Listings -->
+    <section id="providers" class="providers">
+        <div class="container">
+            <h2 class="section-title" id="providers-title">Available Providers</h2>
+    
+            <!-- 👇 INSERT THIS HERE -->
+            <div id="project-description" class="project-description"></div>
+    
+            <div class="provider-grid" id="provider-grid">
+                <!-- Provider cards will be generated here -->
+            </div>
+        </div>
+    </section>
+    
+    <div id="providerContactBox" class="contact-box hidden">
+        <h3>Contact Provider</h3>
+        <p id="providerName"></p>
+        <p id="providerContactNo"></p>
+        <button class="btn">Call</button>
+        <button class="btn">Message</button>
+    </div>
+   
+            <section id="tender" class="container" style="padding: 2rem;">
+                <h2>Post a Tender</h2>
+                <form id="tenderForm">
+                  <input type="text" id="tenderTitle" placeholder="Work Title" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+                  <textarea id="tenderDescription" placeholder="Work Description" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea><br>
+                  <input type="text" id="tenderLocation" placeholder="Location" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+                  <label for="tenderDeadlineTime">Deadline Time</label>
+<input type="time" id="${tender.deadlineTime}" required>
+                  <input type="date" id="tenderDeadline" required style="padding: 10px; margin-bottom: 10px;"><br>
+                  <button type="submit" class="btn btn-primary">Post Tender</button>
+                </form>
+              </section>
+              
+              <!-- Tender Listing Section -->
+              <section id="tender-list" class="container" style="padding: 2rem;">
+                <!-- <h2>Available Tenders</h2> -->
+                <div id="tenderCards"></div>
+              </section>
+
+
+              <section id="tender-section" class="container" style="padding: 2rem;">
+                <h2 class="section-title">All Contractor Tenders</h2>
+                <div id="allTendersList"></div>
+              </section>
+              
+
+              <section id="about">
+                <div class="about-grid">
+         <h2 class="section-title">About Us</h2>
+         <div class="about-container">
+          <h3><p>CommissionZero is a platform that connects verified contractors and freelancers with customers for a variety of home and business services...</p></h3>
+          <p style="font-size: 1.1rem; color: #555;">
+            SkillConnect is a modern labor marketplace that bridges the gap between skilled workers and those in need of their services. 
+            Whether you're looking for an electrician, plumber, carpenter, or painter, our platform helps you find trusted professionals in your area quickly and easily.
+        </p>
+        </div>
+    </div>
+      </section>
+      <section id="contact"  style="padding: 4rem 2rem; text-align: center;">
+    
+        <h2 class="section-title" >Contact Us</h2>
+        <div class="contactUs">
+        <div style="max-width: 700px; margin: 0 auto;">
+            
+            <!-- <h2 class="section-title" >Contact Us</h2> -->
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem; margin-top: 3rem;">
+                Have questions or need help? Reach out to us!
+            </p>
+    
+            <div style="text-align: left; margin-bottom: 2rem;">
+                <h3><strong>📞 Phone:</strong> 7066679997/9076400787</h3>
+                <h3><strong>📧 Email:</strong> <a href="mailto:yourname@example.com">CommissionZero@example.com</a></h3>
+                <h3><strong>📸 Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@CommissionZero</a></h3>
+                <h3><strong>📘 Facebook:</strong> <a href="https://facebook.com/yourpage" target="_blank">facebook.com/CommissionZero</a></h3>
+            </div>
+        </div>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        
+        </div>
+    </section>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="userType">Login as:</label>
+                    <select id="userType" required>
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="freelancer">Freelancer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content scrollable-modal">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name:</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupUserType">Register as:</label>
+                    <select id="signupUserType" required onchange="toggleServiceFields()">
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="freelancer">Freelancer</option>
+                    </select>
+                </div>
+                <div id="serviceFields" class="hidden">
+                    <div class="form-group">
+                        <label for="signupService">Service Type:</label>
+                        <select id="signupService" required>
+                            <option value="">Select service</option>
+                            <option value="solar">Solar Installation</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="carpentry">Carpentry</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="painting">Painting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience:</label>
+                        <input type="number" id="experience" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" rows="3" placeholder="Brief description of your services"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-signUp">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Chat Interface -->
+    <div id="chatInterface" class="chat-interface">
+        <div class="chat-header">
+            <span id="chatTitle">Chat with Provider</span>
+            <span onclick="closeChat()" style="cursor: pointer;">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div style="padding: 1rem; text-align: center; color: #666;">
+                Start a conversation...
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatInput(event)">
+        </div>
+    </div>
+    <!-- Contact Box -->
+<div id="providerContactBox" class="contact-box hidden">
+    <h3>Contact Provider</h3>
+    <p id="providerName"></p>
+    <button class="btn">Call</button>
+    <button class="btn">Message</button>
+  </div>
+  
+  </body>
+  </html>
+  
+
+    <script>
+        let currentService = '';
+        let currentProviderType = '';
+        let isLoggedIn = false;
+        let currentUser = null;
+        let searchQuery = '';
+        document.addEventListener('DOMContentLoaded', () => {
+ 
+ 
+            // Bind input manually if needed
+    const input = document.getElementById('searchInput');
+    if (input) {
+        input.addEventListener('input', filterProviders);
+    }
+
+    // Optional: call filterProviders() initially if required
+    // filterProviders(); 
+});
+const projectDescriptions = {
+    solar: {
+        entireHome: {
+            title: "🏠 Entire Home Solar Installation",
+            description: "Full-scale solar power solutions for residential buildings.",
+            items: ["Roof panel installation", "Battery systems", "Grid integration", "Licensed solar technicians"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        },
+        smallWork: {
+            title: "🔧 Small Solar Jobs",
+            description: "Quick solar checks, inverter fixes, and maintenance tasks.",
+            items: ["Panel cleaning", "Inverter troubleshooting", "Wiring fixes", "Affordable service"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        }
+    },
+    electrical: {
+        entireHome: {
+            title: "🏠 Entire Home Electrical Setup",
+            description: "Complete wiring and electrical systems for your home.",
+            items: ["New home wiring", "Meter installations", "Lighting systems", "Certified electricians"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        },
+        smallWork: {
+            title: "🔧 Small Electrical Fixes",
+            description: "Fast help with switches, lights, and minor repairs.",
+            items: ["Socket repair", "Fan installation", "Circuit breaker fix", "Low-cost work"],
+            images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+        }
+    },
+    // Add similar entries for carpentry, plumbing, painting...
+    carpentry: {
+    entireHome: {
+        title: "🏠 Full Home Carpentry Work",
+        description: "Custom woodwork solutions for every room in your house.",
+        items: ["Modular furniture", "Wardrobe fitting", "Wooden flooring", "Experienced carpenters"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🔧 Small Carpentry Jobs",
+        description: "Minor fixes and furniture tweaks at affordable rates.",
+        items: ["Door alignment", "Shelf installation", "Table repair", "Polishing & touch-ups"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+},
+plumbing: {
+    entireHome: {
+        title: "🏠 Complete Home Plumbing",
+        description: "Plumbing installation for new and existing homes.",
+        items: ["Bathroom fittings", "Water line setup", "Sump & tank connection", "Certified plumbers"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🔧 Minor Plumbing Repairs",
+        description: "Fix leaking taps, choked drains, and pipe issues quickly.",
+        items: ["Leak fixing", "Drain cleaning", "Tap & faucet replacement", "Quick home visits"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+},
+painting: {
+    entireHome: {
+        title: "🏠 Full Home Painting",
+        description: "Interior and exterior painting with a clean finish.",
+        items: ["Wall preparation", "Interior/exterior painting", "Texture & designs", "Professional painters"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    },
+    smallWork: {
+        title: "🎨 Small Painting Tasks",
+        description: "Touch-ups, patch fixes, and single-room painting.",
+        items: ["Wall touch-ups", "Single room paint", "Color consultation", "Low-cost jobs"],
+        images: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]
+    }
+}
+
+};
+
+
+
+
+// Sample data
+        const contractors = {
+            solar: [
+                { name: 'SolarTech Solutions', rating: 4.8, experience: 10, price: '$15,000-50,000', projects: 150  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Green Energy Corp', rating: 4.6, experience: 8, price: '$12,000-45,000', projects: 120 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            electrical: [
+                { name: 'PowerLine Contractors', rating: 4.9, experience: 15, price: '$500-5,000', projects: 300  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Circuit Masters', rating: 4.7, experience: 12, price: '$400-4,500', projects: 250  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            carpentry: [
+                { name: 'WoodCraft Professionals', rating: 4.8, experience: 12, price: '$1,000-15,000', projects: 200  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Custom Carpentry Co', rating: 4.6, experience: 10, price: '$800-12,000', projects: 180  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            plumbing: [
+                { name: 'AquaFlow Systems', rating: 4.7, experience: 14, price: '$200-3,000', projects: 280  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Pipe Masters Ltd', rating: 4.5, experience: 11, price: '$150-2,500', projects: 220  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            painting: [
+                { name: 'ColorPro Contractors', rating: 4.9, experience: 9, price: '$500-8,000', projects: 160  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Premium Paint Services', rating: 4.6, experience: 7, price: '$400-6,000', projects: 140  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ]
+        };
+
+        const freelancers = {
+            solar: [
+                { name: 'Mike Johnson', rating: 4.5, experience: 5, price: '$50-200/hr', projects: 45 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Sarah Chen', rating: 4.7, experience: 6, price: '$60-180/hr', projects: 52 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]} 
+            ],
+            electrical: [
+                { name: 'John Smith', rating: 4.8, experience: 8, price: '$40-120/hr', projects: 85  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Lisa Rodriguez', rating: 4.6, experience: 6, price: '$35-100/hr', projects: 65  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            carpentry: [
+                { name: 'David Brown', rating: 4.7, experience: 10, price: '$30-80/hr', projects: 95  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Emily Davis', rating: 4.5, experience: 7, price: '$25-70/hr', projects: 75  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]} 
+            ],
+            plumbing: [
+                { name: 'Robert Wilson', rating: 4.9, experience: 12, price: '$35-90/hr', projects: 110 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Maria Garcia', rating: 4.4, experience: 5, price: '$30-75/hr', projects: 60 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            painting: [
+                { name: 'Tom Anderson', rating: 4.6, experience: 8, price: '$25-65/hr', projects: 80  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Jessica Taylor', rating: 4.8, experience: 9, price: '$30-70/hr', projects: 90  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ]
+        };
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function searchProviders() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const providerCards = document.querySelectorAll('.provider-card');
+            let hasResults = false;
+
+            providerCards.forEach(card => {
+                const name = card.querySelector('.provider-name').textContent.toLowerCase();
+                const specialized = card.querySelector('.provider-specialized').textContent.toLowerCase();
+                const experience = card.querySelector('.provider-experience').textContent.toLowerCase();
+
+                if (name.includes(searchInput) || 
+                    specialized.includes(searchInput) || 
+                    experience.includes(searchInput)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResultsMsg = document.getElementById('noResultsMessage') || createNoResultsMessage();
+            noResultsMsg.style.display = hasResults ? 'none' : 'block';
+        }
+
+        function createNoResultsMessage() {
+            const msg = document.createElement('div');
+            msg.id = 'noResultsMessage';
+            msg.style.textAlign = 'center';
+            msg.style.padding = '2rem';
+            msg.style.color = '#666';
+            msg.innerHTML = 'No results found. Try different search terms.';
+            document.querySelector('.provider-grid').appendChild(msg);
+            return msg;
+        }
+
+        // Add event listener for real-time search
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', searchProviders);
+            }
+        });
+
+        
+
+        function selectService(service) {
+    currentService = service;
+    document.getElementById('services').style.display = 'none';
+    document.getElementById('project-types').classList.remove('hidden');
+
+    const data = projectDescriptions[service];
+
+   // ENTIRE HOME
+const entireHome = document.querySelector('.type-card:nth-child(1)');
+entireHome.querySelector('h3').textContent = data.entireHome.title;
+entireHome.querySelector('p').textContent = data.entireHome.description;
+const entireList = entireHome.querySelector('ul');
+entireList.innerHTML = data.entireHome.items.map(item => `<li>${item}</li>`).join('');
+
+// Remove old images if any
+entireHome.querySelectorAll('img.project-image').forEach(img => img.remove());
+
+// Add multiple images
+if (data.entireHome.images) {
+    data.entireHome.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'project-image';
+        img.style = "width:200px; height:150px; margin:10px; border-radius: 8px;";
+        entireHome.appendChild(img);
+    });
+}
+
+// SMALL WORK
+const smallWork = document.querySelector('.type-card:nth-child(2)');
+smallWork.querySelector('h3').textContent = data.smallWork.title;
+smallWork.querySelector('p').textContent = data.smallWork.description;
+const smallList = smallWork.querySelector('ul');
+smallList.innerHTML = data.smallWork.items.map(item => `<li>${item}</li>`).join('');
+
+// Remove old images if any
+smallWork.querySelectorAll('img.project-image').forEach(img => img.remove());
+
+// Add multiple images
+if (data.smallWork.images) {
+    data.smallWork.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'project-image';
+        img.style = "width:200px; height:150px; margin:10px; border-radius: 8px;";
+        smallWork.appendChild(img);
+    });
+}
+        }
+
+function showProviders(type) {
+    currentProviderType = type; // 'contractors' or 'freelancers'
+
+    // Hide project types and show providers
+    document.getElementById('project-types').classList.add('hidden');
+    document.getElementById('providers').style.display = 'block';
+
+    // Update title
+    const title = document.getElementById('providers-title');
+    title.textContent = type === 'contractors' ? 'Available Contractors' : 'Available Freelancers';
+
+    // Show project description (based on selected service and project type)
+    showProjectDescription(type);
+
+    // Generate cards
+    generateProviderCards();
+}
+function showProjectDescription(type) {
+    const container = document.getElementById('project-description');
+
+    // Make sure service and type are valid
+    if (!projectDescriptions[currentService] || !projectDescriptions[currentService][type === 'contractors' ? 'entireHome' : 'smallWork']) {
+        container.innerHTML = "<p>No description available for this service.</p>";
+        return;
+    }
+
+    const data = projectDescriptions[currentService][type === 'contractors' ? 'entireHome' : 'smallWork'];
+
+    container.innerHTML = `
+        <h3>${data.title}</h3>
+        <p>${data.description}</p>
+         ${data.image ? `<img src="${data.image}" alt="${data.title}" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">` : ''}
+        <ul>
+            ${data.items.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+       
+    `;
+}
+
+
+
+        function generateProviderCards() {
+            const grid = document.getElementById('provider-grid');
+            const data = currentProviderType === 'contractors' ? contractors[currentService] : freelancers[currentService];
+            
+            grid.innerHTML = '';
+            
+            data.forEach((provider, index) => {
+                const card = document.createElement('div');
+                card.className = 'provider-card';
+                card.innerHTML = `
+    <div class="provider-header">
+        <div class="provider-avatar">${provider.name.charAt(0)}</div>
+        <div class="provider-info">
+            <div class="provider-name">
+            <h4>${provider.name}</h4>
+            </div>
+            <div class="rating">★★★★★ ${provider.rating}</div>
+            <div class="provider-experience">
+            <p>${provider.experience} years experience • ${provider.projects} projects</p>
+         </div>
+        </div>
+    </div>
+    <div class="provider-specialized">
+    <p>Specialized in ${currentService} services with excellent track record.</p>
+    </div>
+    <div class="provider-actions">
+        <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
+        <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}','${provider.contactNo}')">Contact</button>
+        
+        <button class="btn-small btn-calendar" onclick="viewCalendar('${provider.name}')">Calendar</button>
+    </div>
+    <div class="photo-gallery">
+        ${(provider.photos || []).slice(0, 4).map(photo => `
+            <img src="${photo}" alt="Photo of ${provider.name}" class="provider-photo">
+        `).join('')}
+    </div>
+`;
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function toggleServiceFields() {
+    const userType = document.getElementById('signupUserType').value;
+    const serviceFields = document.getElementById('serviceFields');
+    serviceFields.classList.toggle('hidden', userType === 'customer');
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const userType = document.getElementById('userType').value;
+    if (userType === 'contractor') {
+        window.location.href = 'contractor-dashboard.html';
+    } else if (userType === 'freelancer') {
+        window.location.href = 'freelancer-dashboard.html';
+    } else {
+        window.location.href = 'customer-dashboard.html';
+    }
+}
+function handleSignup(e) {
+    e.preventDefault();
+    alert('Registration successful!');
+    closeModal('signupModal');
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const userType = document.getElementById('signupUserType').value;
+    const service = document.getElementById('signupService').value;
+
+
+    // Simulate signup
+    isLoggedIn = true;
+     currentUser = { name, email, userType, service };
+
+    const newWorker = {
+        name,
+        rating: 4.0, // default
+        experience: 1,
+        price: 'To be set',
+        projects: 0,
+        contactNo: 'N/A',
+        photos: []
+    };
+
+    // Add to data
+    if (userType === 'contractor') {
+        if (!contractors[service]) contractors[service] = [];
+        contractors[service].push(newWorker);
+    } else if (userType === 'freelancer') {
+        if (!freelancers[service]) freelancers[service] = [];
+        freelancers[service].push(newWorker);
+    }
+
+    alert('Registration successful!');
+    closeModal('signupModal');
+
+    // If same service and type is selected, re-render cards
+    if (currentService === service && currentProviderType === (userType === 'contractor' ? 'contractors' : 'freelancers')) {
+        generateProviderCards();
+    }
+}
+
+function filterProviders() {
+    const input = document.getElementById('searchInput');
+    if (!input) {
+        console.warn('Search input element not found.');
+        return;
+    }
+
+    const query = input.value.trim().toLowerCase();
+
+    // Check if currentService and currentProviderType are selected
+    if (!currentService || !currentProviderType) {
+        console.warn('Service or provider type not selected.');
+        return;
+    }
+
+    const data = currentProviderType === 'contractors' 
+        ? contractors[currentService] || []
+        : freelancers[currentService] || [];
+
+    const filtered = data.filter(provider =>
+        provider.name.toLowerCase().includes(query) ||
+        provider.price.toLowerCase().includes(query) ||
+        (provider.skills && provider.skills.some(skill => skill.toLowerCase().includes(query))) || 
+        (provider.description && provider.description.toLowerCase().includes(query)) ||
+        (currentService && currentService.toLowerCase().includes(query))
+    );
+
+    renderProviders(filtered);
+}
+
+
+function renderProviders(providersToRender = null) {
+    const grid = document.getElementById('provider-grid');
+    const data = providersToRender || (currentProviderType === 'contractors' ? contractors[currentService] : freelancers[currentService]);
+
+    grid.innerHTML = '';
+
+    data.forEach(provider => {
+        const card = document.createElement('div');
+        card.className = 'provider-card';
+        card.innerHTML = `
+            <div class="provider-header">
+                <div class="provider-avatar">${provider.name.charAt(0)}</div>
+                <div class="provider-info">
+                    <h4 class="provider-name">${provider.name}</h4>
+                    <div class="rating">★★★★★ ${provider.rating}</div>
+                    <p class="provider-experience">${provider.experience} years experience • ${provider.projects} projects</p>
+                    <p><strong>${provider.price}</strong></p>
+                </div>
+            </div>
+            <p class="provider-specialized">Specialized in ${currentService} services with excellent track record.</p>
+            <div class="provider-actions">
+                <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
+                <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}', '${provider.contactNo}')">Contact</button>
+                <button class="btn-small btn-portfolio" onclick="viewPortfolio('${provider.name}')">Portfolio</button>
+                <button class="btn-small btn-calendar" onclick="viewCalendar('${provider.name}')">Calendar</button>
+            </div>
+            <div class="photo-gallery">
+                ${(provider.photos || []).slice(0, 4).map(photo => `
+                    <img src="${photo}" alt="Photo of ${provider.name}" class="provider-photo">
+                `).join('')}
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}let tenders = [];
+
+document.getElementById('tenderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const tender = {
+    id: Date.now(),
+    title: document.getElementById('tenderTitle').value,
+    description: document.getElementById('tenderDescription').value,
+    location: document.getElementById('tenderLocation').value,
+    deadline: document.getElementById('tenderDeadline').value,
+    quotes: []
+  };
+
+  tenders.push(tender);
+  renderTenders();
+  this.reset();
+  showAllContractorTenders();
+});
+
+function renderTenders() {
+  const container = document.getElementById('tenderCards');
+  container.innerHTML = '';
+
+  tenders.forEach(tender => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style = 'padding: 1rem; margin: 1rem 0; border: 1px solid #ccc; border-radius: 10px;';
+
+    card.innerHTML = `
+      <h3>${tender.title}</h3>
+      <p>${tender.description}</p>
+      <p><strong>Location:</strong> ${tender.location}</p>
+      <p><strong>Deadline:</strong> ${tender.deadline} , ${tender.deadlineTime}</p>
+      <input type="text" placeholder="Enter your quote" id="quote-${tender.id}" style="margin-top: 10px; padding: 8px; width: 80%;">
+      <button onclick="submitQuote(${tender.id})" style="margin-left: 10px; padding: 8px;">Submit Quote</button>
+      <div id="quotes-${tender.id}" style="margin-top: 1rem;"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function submitQuote(tenderId) {
+  const quoteInput = document.getElementById(`quote-${tenderId}`);
+  const quoteValue = quoteInput.value;
+
+  const tender = tenders.find(t => t.id === tenderId);
+  if (tender) {
+    tender.quotes.push(quoteValue);
+    showQuotes(tenderId);
+    quoteInput.value = '';
+  }
+}
+
+function showQuotes(tenderId) {
+  const quoteDiv = document.getElementById(`quotes-${tenderId}`);
+  const tender = tenders.find(t => t.id === tenderId);
+  quoteDiv.innerHTML = '<h4>Submitted Quotes:</h4><ul>' +
+    tender.quotes.map(q => `<li>${q}</li>`).join('') +
+    '</ul>';
+}
+
+
+        function openChat(providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to start a chat');
+                return;
+            }
+            
+            document.getElementById('chatTitle').textContent = `Chat with ${providerName}`;
+            document.getElementById('chatInterface').style.display = 'block';
+        }
+
+        function closeChat() {
+            document.getElementById('chatInterface').style.display = 'none';
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                
+                if (message) {
+                    const messagesDiv = document.getElementById('chatMessages');
+                    messagesDiv.innerHTML += `
+                        <div style="margin-bottom: 1rem;">
+                            <strong>You:</strong> ${message}
+                        </div>
+                    `;
+                    input.value = '';
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    
+                    // Simulate response
+                    setTimeout(() => {
+                        messagesDiv.innerHTML += `
+                            <div style="margin-bottom: 1rem; color: #666;">
+                                <strong>Provider:</strong> Thanks for your message! I'll get back to you shortly.
+                            </div>
+                        `;
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }, 1000);
+                }
+            }
+        }
+
+        function contactProvider(providerName, providerContactNo) { 
+    if (!isLoggedIn) {
+        alert('Please login to contact providers');
+        return;
+    }
+
+    const contactBox = document.getElementById('providerContactBox');
+    const providerNameText = document.getElementById('providerName');
+    const contactNoText = document.getElementById('providerContactNo');
+
+    if (!contactBox || !providerNameText || !contactNoText) {
+        console.error('One or more contact elements not found in the DOM.');
+        return;
+    }
+
+    providerNameText.textContent = `You are contacting: ${providerName}`;
+    contactNoText.textContent = `Contact Number: ${providerContactNo}`;
+
+    contactBox.classList.remove('hidden');
+    contactBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+        function viewPortfolio(providerName) {
+            alert(`Opening portfolio for ${providerName}...`);
+        }
+
+        function viewCalendar(providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to view calendar');
+                return;
+            }
+            alert(`Opening calendar for ${providerName}...`);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+        function showSection(sectionId) {
+    // सर्व section लपवा
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+    
+    // हवा असलेला section दाखवा
+    const target = document.getElementById(sectionId);
+    if (target) target.classList.remove("hidden");
+
+    // स्क्रोलिंगसाठी (optional)
+    target?.scrollIntoView({ behavior: "smooth" });
+  }
+  function loadPortfolio(photos) {
+    const portfolio = document.getElementById("portfolioSection");
+    portfolio.innerHTML = ''; // Clear previous images
+
+    photos.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "Work Photo";
+      img.className = "thumbnail";
+      img.style.width = "150px";
+      img.style.height = "auto";
+      img.style.cursor = "pointer";
+      img.onclick = function () {
+        openImage(src);
+      };
+      portfolio.appendChild(img);
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('searchInput');
+  const providerCards = document.querySelectorAll('.provider-card');
+
+  searchInput.addEventListener('input', function () {
+    const searchValue = this.value.toLowerCase();
+
+    providerCards.forEach(card => {
+      const name = card.querySelector('.provider-name')?.textContent.toLowerCase() || '';
+      const skill = card.querySelector('.provider-specialized')?.textContent.toLowerCase() || '';
+
+      if (name.includes(searchValue) || skill.includes(searchValue)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+function showAllContractorTenders() {
+  const container = document.getElementById("allTendersList");
+  if (!container) return;
+
+  if (tenders.length === 0) {
+    container.innerHTML = "<p>No tenders submitted yet.</p>";
+    return;
+  }
+
+  container.innerHTML = tenders
+    .map(
+      (t) => `
+    <div style="border: 1px solid #ccc; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+      <h3>${t.title}</h3>
+      <p>${t.description}</p>
+      <p><strong>Location:</strong> ${t.location}</p>
+      <p><strong>Deadline:</strong> ${t.deadline}</p>
+      ${t.quotes.length > 0 ? `<h4>Quotes:</h4><ul>${t.quotes.map(q => `<li>${q}</li>`).join("")}</ul>` : ""}
+    </div>
+  `
+    )
+    .join("");
+}
+
+// Optional: auto-load on page load
+document.addEventListener("DOMContentLoaded", () => {
+  showAllContractorTenders();
+});
+
+
+  
+    </script>
+</body>
+</html>

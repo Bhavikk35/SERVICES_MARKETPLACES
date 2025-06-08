@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommissionZero - Professional Services Marketplace</title>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js'></script>
+    <style>
+        /* ... existing styles ... */
+
+        /* Calendar Styles */
+        .calendar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .calendar-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .availability-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .availability-form h3 {
+            margin-bottom: 15px;
+        }
+
+        .availability-slot {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .fc-event {
+            cursor: pointer;
+        }
+
+        .booking-form {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... existing HTML structure ... -->
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="calendar-modal">
+        <div class="calendar-container">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h2>Schedule</h2>
+                <button onclick="closeCalendar()" class="btn btn-secondary">Close</button>
+            </div>
+            <div id="calendar"></div>
+            
+            <!-- Provider Availability Form -->
+            <div id="availabilityForm" class="availability-form" style="display: none;">
+                <h3>Set Your Availability</h3>
+                <div id="availabilitySlots"></div>
+                <button onclick="addAvailabilitySlot()" class="btn btn-primary">Add Time Slot</button>
+                <button onclick="saveAvailability()" class="btn btn-primary">Save Availability</button>
+            </div>
+
+            <!-- Booking Form -->
+            <div id="bookingForm" class="booking-form" style="display: none;">
+                <h3>Book Appointment</h3>
+                <p id="bookingDetails"></p>
+                <button onclick="confirmBooking()" class="btn btn-primary">Confirm Booking</button>
+                <button onclick="cancelBooking()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        let currentService = '';
+        let currentProviderType = '';
+        let isLoggedIn = false;
+        let currentUser = null;
+        let authToken = localStorage.getItem('authToken');
+
+        // Check if user is already logged in
+        if (authToken) {
+            isLoggedIn = true;
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const userType = document.getElementById('userType').value;
+            
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    isLoggedIn = true;
+                    authToken = data.token;
+                    currentUser = { email, userType: data.userType };
+                    
+                    localStorage.setItem('authToken', authToken);
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    alert('Login successful!');
+                    closeModal('loginModal');
+                } else {
+                    alert(data.error || 'Login failed');
+                }
+            } catch (error) {
+                alert('Error during login');
+                console.error('Login error:', error);
+            }
+        }
+
+        async function handleSignup(event) {
+            event.preventDefault();
+            const formData = {
+                name: document.getElementById('signupName').value,
+                email: document.getElementById('signupEmail').value,
+                password: document.getElementById('signupPassword').value,
+                userType: document.getElementById('signupUserType').value
+            };
+
+            if (formData.userType !== 'customer') {
+                formData.serviceType = document.getElementById('serviceType').value;
+                formData.experience = document.getElementById('experience').value;
+                formData.description = document.getElementById('description').value;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Registration successful! Please login.');
+                    closeModal('signupModal');
+                } else {
+                    alert(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                alert('Error during registration');
+                console.error('Registration error:', error);
+            }
+        }
+
+        async function showProviders(type) {
+            currentProviderType = type;
+            document.getElementById('project-types').classList.add('hidden');
+            document.getElementById('providers').style.display = 'block';
+            
+            const title = document.getElementById('providers-title');
+            title.textContent = type === 'contractors' ? 'Available Contractors' : 'Available Freelancers';
+            
+            try {
+                const response = await fetch(`${API_URL}/providers/${currentService}`);
+                const providers = await response.json();
+                
+                generateProviderCards(providers);
+            } catch (error) {
+                console.error('Error fetching providers:', error);
+                alert('Error loading providers');
+            }
+        }
+
+        async function sendMessage(receiverId, message) {
+            if (!isLoggedIn) {
+                alert('Please login to send messages');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ receiverId, message })
+                });
+
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error);
+                }
+                
+                return data;
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert('Error sending message');
+            }
+        }
+
+        async function getMessages(otherUserId) {
+            try {
+                const response = await fetch(`${API_URL}/messages/${otherUserId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                const messages = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(messages.error);
+                }
+                
+                return messages;
+            } catch (error) {
+                console.error('Error fetching messages:', error);
+                alert('Error loading messages');
+                return [];
+            }
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                
+                if (message) {
+                    sendMessage(currentChatReceiverId, message)
+                        .then(() => {
+                            const messagesDiv = document.getElementById('chatMessages');
+                            messagesDiv.innerHTML += `
+                                <div style="margin-bottom: 1rem;">
+                                    <strong>You:</strong> ${message}
+                                </div>
+                            `;
+                            input.value = '';
+                            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                        });
+                }
+            }
+        }
+
+        let currentChatReceiverId = null;
+
+        async function openChat(providerId, providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to start a chat');
+                return;
+            }
+            
+            currentChatReceiverId = providerId;
+            document.getElementById('chatTitle').textContent = `Chat with ${providerName}`;
+            document.getElementById('chatInterface').style.display = 'block';
+            
+            const messages = await getMessages(providerId);
+            const messagesDiv = document.getElementById('chatMessages');
+            
+            messagesDiv.innerHTML = messages.map(msg => `
+                <div style="margin-bottom: 1rem;">
+                    <strong>${msg.sender_id === currentUser.id ? 'You' : providerName}:</strong> ${msg.message}
+                </div>
+            `).join('');
+            
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        let calendar = null;
+        let currentEventId = null;
+
+        function viewCalendar(providerId, providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to view calendar');
+                return;
+            }
+
+            document.getElementById('calendarModal').style.display = 'block';
+            
+            // Show availability form only for the provider viewing their own calendar
+            const isOwnCalendar = currentUser && currentUser.id === providerId;
+            document.getElementById('availabilityForm').style.display = isOwnCalendar ? 'block' : 'none';
+
+            if (!calendar) {
+                const calendarEl = document.getElementById('calendar');
+                calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'timeGridWeek',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    events: function(info, successCallback, failureCallback) {
+                        fetch(`/api/calendar/${providerId}?start=${info.startStr}&end=${info.endStr}`)
+                            .then(response => response.json())
+                            .then(events => {
+                                successCallback(events.map(event => ({
+                                    id: event.id,
+                                    title: event.title,
+                                    start: event.start_time,
+                                    end: event.end_time,
+                                    status: event.status,
+                                    color: getEventColor(event.status)
+                                })));
+                            })
+                            .catch(error => {
+                                console.error('Error fetching events:', error);
+                                failureCallback(error);
+                            });
+                    },
+                    eventClick: function(info) {
+                        if (!isLoggedIn) {
+                            alert('Please login to book appointments');
+                            return;
+                        }
+
+                        currentEventId = info.event.id;
+                        const status = info.event.extendedProps.status;
+
+                        if (status === 'available') {
+                            document.getElementById('bookingDetails').innerHTML = `
+                                Book appointment with ${providerName}<br>
+                                Date: ${info.event.start.toLocaleDateString()}<br>
+                                Time: ${info.event.start.toLocaleTimeString()} - ${info.event.end.toLocaleTimeString()}
+                            `;
+                            document.getElementById('bookingForm').style.display = 'block';
+                        } else {
+                            alert('This time slot is not available');
+                        }
+                    }
+                });
+                calendar.render();
+            }
+
+            // Load provider's availability
+            loadProviderAvailability(providerId);
+        }
+
+        function getEventColor(status) {
+            switch (status) {
+                case 'available': return '#4CAF50';
+                case 'booked': return '#2196F3';
+                case 'completed': return '#9C27B0';
+                case 'cancelled': return '#f44336';
+                default: return '#9E9E9E';
+            }
+        }
+
+        function closeCalendar() {
+            document.getElementById('calendarModal').style.display = 'none';
+            document.getElementById('bookingForm').style.display = 'none';
+        }
+
+        function addAvailabilitySlot() {
+            const container = document.getElementById('availabilitySlots');
+            const slot = document.createElement('div');
+            slot.className = 'availability-slot';
+            slot.innerHTML = `
+                <select class="day-select">
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                </select>
+                <input type="time" class="start-time">
+                <input type="time" class="end-time">
+                <button onclick="this.parentElement.remove()" class="btn btn-secondary">Remove</button>
+            `;
+            container.appendChild(slot);
+        }
+
+        async function saveAvailability() {
+            const slots = document.querySelectorAll('.availability-slot');
+            const availabilitySchedule = Array.from(slots).map(slot => ({
+                dayOfWeek: parseInt(slot.querySelector('.day-select').value),
+                startTime: slot.querySelector('.start-time').value,
+                endTime: slot.querySelector('.end-time').value
+            }));
+
+            try {
+                const response = await fetch('/api/availability', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ availabilitySchedule })
+                });
+
+                if (response.ok) {
+                    alert('Availability saved successfully');
+                    calendar.refetchEvents();
+                } else {
+                    alert('Error saving availability');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error saving availability');
+            }
+        }
+
+        async function loadProviderAvailability(providerId) {
+            try {
+                const response = await fetch(`/api/availability/${providerId}`);
+                const availability = await response.json();
+
+                document.getElementById('availabilitySlots').innerHTML = '';
+                availability.forEach(slot => {
+                    addAvailabilitySlot();
+                    const lastSlot = document.querySelector('.availability-slot:last-child');
+                    lastSlot.querySelector('.day-select').value = slot.day_of_week;
+                    lastSlot.querySelector('.start-time').value = slot.start_time;
+                    lastSlot.querySelector('.end-time').value = slot.end_time;
+                });
+            } catch (error) {
+                console.error('Error loading availability:', error);
+            }
+        }
+
+        async function confirmBooking() {
+            try {
+                const response = await fetch(`/api/calendar/book/${currentEventId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Appointment booked successfully');
+                    document.getElementById('bookingForm').style.display = 'none';
+                    calendar.refetchEvents();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || 'Error booking appointment');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error booking appointment');
+            }
+        }
+
+        function cancelBooking() {
+            document.getElementById('bookingForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html> 
