@@ -975,8 +975,20 @@ body::before {
         <h3>Contact Provider</h3>
         <p id="providerName"></p>
         <p id="providerContactNo"></p>
-        <button class="btn">Call</button>
-        <button class="btn">Message</button>
+        <button style="
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+">
+  Call
+</button>
+
+        <!-- <button class="btn">Message</button> -->
     </div>
    
             <section id="tender" class="container" style="padding: 2rem;">
@@ -1825,10 +1837,10 @@ function showQuotes(tenderId) {
 
 
         function openChat(providerName) {
-            if (!isLoggedIn) {
-                alert('Please login to start a chat');
-                return;
-            }
+            // if (!isLoggedIn) {
+            //     alert('Please login to start a chat');
+            //     return;
+            // }
             
             document.getElementById('chatTitle').textContent = `Chat with ${providerName}`;
             document.getElementById('chatInterface').style.display = 'block';
@@ -1867,10 +1879,10 @@ function showQuotes(tenderId) {
         }
 
         function contactProvider(providerName, providerContactNo) { 
-    if (!isLoggedIn) {
-        alert('Please login to contact providers');
-        return;
-    }
+    // if (!isLoggedIn) {
+    //     alert('Please login to contact providers');
+    //     return;
+    // }
 
     const contactBox = document.getElementById('providerContactBox');
     const providerNameText = document.getElementById('providerName');
@@ -1894,10 +1906,10 @@ function showQuotes(tenderId) {
         }
 
         function viewCalendar(providerName) {
-            if (!isLoggedIn) {
-                alert('Please login to view calendar');
-                return;
-            }
+            // if (!isLoggedIn) {
+            //     alert('Please login to view calendar');
+            //     return;
+            // }
             alert(`Opening calendar for ${providerName}...`);
         }
 
