@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommissionZero Freelancers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* body {
+            
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #F5F5F5;
+            color: #212121;
+        }  */
+
+         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 0px;
+      
+        }
+
+        /* Header */
+        header {
+            background: white; /* आधीचा gradient काढ */
+            color: #333;
+            /* padding: 1rem 0; */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+           
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            
+        }
+        .btn-primary {
+            background:white;
+            color: black;
+        }
+
+        .btn-secondary {
+            background:white;
+            color: black;
+           /* border: 2px solid white; */
+        }
+        .btn-getStarted {
+            background:black;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-signUp {
+            background:black;
+            color: white;
+
+        }
+        .btn-login {
+            background:black;
+            color: white;
+
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: white; /* आधी gradient होता */
+            color: #333;
+            padding: 7rem 0;
+            text-align: center;
+            margin-top: 40px;
+            /* margin-bottom: 30px; */
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Categories */
+        .services {
+            background-color: white;
+            padding: 4rem 0;
+          
+           
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            margin-top: 100px;
+            color: #333;
+        }
+
+        .service-grid {
+            background-color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Project Type Selection */
+        .project-types {
+            padding: 4rem 0;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .type-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .type-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Provider Listings */
+        .providers {
+            padding: 4rem 0;
+            background: white;
+            display: none;
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .provider-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: block; /* Ensure cards are displayed by default */
+}
+
+.provider-card.hidden {
+    display: none; /* Hide cards that do not match the search query */
+}
+
+        .provider-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .provider-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .provider-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #ffa500;
+            margin-bottom: 0.5rem;
+        }
+
+        .provider-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-small:hover {
+    background-color: #0056b3;
+}
+
+.btn-chat, .btn-contact, .btn-portfolio, .btn-calendar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Specific button colors */
+.btn-chat {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-contact {
+    background: #2196F3;
+    color: white;
+}
+
+.btn-portfolio {
+    background: #FF9800;
+    color: white;
+}
+
+.btn-calendar {
+    background: #9C27B0;
+    color: white;
+}
+
+/* Hover effects */
+.btn-chat:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.btn-contact:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+
+.btn-portfolio:hover {
+    background: #fb8c00;
+    transform: scale(1.05);
+}
+
+.btn-calendar:hover {
+    background: #7b1fa2;
+    transform: scale(1.05);
+}
+.contact-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 2000;
+}
+
+.contact-box.hidden {
+    display: none;
+}
+
+
+    /* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* allow modal scrolling on mobile */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+
+    /* NEW: scrollable and mobile-friendly */
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            height: 250px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f8f9fa;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .type-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+        html {
+  scroll-behavior: smooth;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+  background-color: #1E88E5;
+  color: white;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0 auto; /* Center the links */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.provider-photo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.search-box {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.search-bar-wrapper {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 0 15px;
+}
+
+.search-bar-wrapper input {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s border-color;
+}
+
+.search-bar-wrapper input:focus {
+    border-color: #007bff;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">CommissionZero</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signupModal')">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Professional Services at Your Doorstep</h1>
+            
+            <p>Connect with verified contractors and freelancers for all your service needs</p>
+            <button class="btn btn-getStarted " onclick="scrollToServices()">Get Started</button>
+            <div class="search-bar-wrapper">
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search by Name, Skill, or Service"
+              />
+            </div>
+        </div>
+        
+          
+   
+   
+      
+      
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card" onclick="selectService('solar')">
+                    <div class="service-icon">☀️</div>
+                    <h3>Solar Installation</h3>
+                    <p>Professional solar panel installation and maintenance</p>
+                </div>
+                <div class="service-card" onclick="selectService('electrical')">
+                    <div class="service-icon">⚡</div>
+                    <h3>Electrical Services</h3>
+                    <p>Certified electricians for all electrical needs</p>
+                </div>
+                <div class="service-card" onclick="selectService('carpentry')">
+                    <div class="service-icon">🔨</div>
+                    <h3>Carpentry</h3>
+                    <p>Expert carpenters for furniture and woodwork</p>
+                </div>
+                <div class="service-card" onclick="selectService('plumbing')">
+                    <div class="service-icon">🔧</div>
+                    <h3>Plumbing</h3>
+                    <p>Licensed plumbers for repairs and installations</p>
+                </div>
+                <div class="service-card" onclick="selectService('painting')">
+                    <div class="service-icon">🎨</div>
+                    <h3>Painting</h3>
+                    <p>Professional painters for interior and exterior work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Type Selection -->
+    <section id="project-types" class="project-types hidden">
+        <div class="container">
+            <h2 class="section-title">Choose Your Project Type</h2>
+            <div class="type-grid">
+                <div class="type-card" onclick="showProviders('contractors')">
+                    <h3> 🏠Home Projects</h3>
+                    <p>Large scale projects requiring experienced contractors with proper licensing and equipment</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Industrial installations</li>
+                        <li>Home renovations</li>
+                        <li>Commercial projects</li>
+                        <li>Licensed contractors</li>
+                    </ul>
+                </div>
+                <div class="type-card" onclick="showProviders('freelancers')">
+                    <h3>🔧 Small Projects</h3>
+                    <p>Quick fixes and small jobs handled by skilled freelancers</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Minor repairs</li>
+                        <li>Quick installations</li>
+                        <li>Maintenance work</li>
+                        <li>Budget-friendly options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Provider Listings -->
+    <section id="providers" class="providers">
+        <div class="container">
+            <h2 class="section-title" id="providers-title">Available Providers</h2>
+            <div class="provider-grid" id="provider-grid">
+                <!-- Provider cards will be generated here -->
+            </div>
+        </div>
+    </section>
+    <div id="providerContactBox" class="contact-box hidden">
+        <h3>Contact Provider</h3>
+        <p id="providerName"></p>
+        <p id="providerContactNo"></p>
+        <button class="btn">Call</button>
+        <button class="btn">Message</button>
+    </div>
+    <section id="about">
+        <div class="container">
+    
+          <h2 class="section-title">About Us</h2>
+          <h3><p>CommissionZero is a platform that connects verified contractors and freelancers with customers for a variety of home and business services...</p></h3>
+          <p style="font-size: 1.1rem; color: #555;">
+            SkillConnect is a modern labor marketplace that bridges the gap between skilled workers and those in need of their services. 
+            Whether you're looking for an electrician, plumber, carpenter, or painter, our platform helps you find trusted professionals in your area quickly and easily.
+        </p>
+        </div>
+      </section>
+      <section id="contact" style="padding: 4rem 2rem;  background-color: white; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Contact Us</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
+                Have questions or need help? Reach out to us!
+            </p>
+    
+            <div style="text-align: left; margin-bottom: 2rem;">
+                <p><strong>📞 Phone:</strong> 7066679997/9076400787</p>
+                <p><strong>📧 Email:</strong> <a href="mailto:yourname@example.com">CommissionZero@example.com</a></p>
+                <p><strong>📸 Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@CommissionZero</a></p>
+                <p><strong>📘 Facebook:</strong> <a href="https://facebook.com/yourpage" target="_blank">facebook.com/CommissionZero</a></p>
+            </div>
+    
+            <form style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;">
+                <input type="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;">
+                <textarea placeholder="Your Message" rows="5" required style="padding: 0.75rem; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+                <button type="submit" style="padding: 0.75rem; border: none; border-radius: 5px; background-color: #667eea; color: white; font-size: 1rem; cursor: pointer;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="userType">Login as:</label>
+                    <select id="userType" required>
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="freelancer">Freelancer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content scrollable-modal">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name:</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupUserType">Register as:</label>
+                    <select id="signupUserType" required onchange="toggleServiceFields()">
+                        <option value="">Select user type</option>
+                        <option value="customer">Customer</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="freelancer">Freelancer</option>
+                    </select>
+                </div>
+                <div id="serviceFields" class="hidden">
+                    <div class="form-group">
+                        <label for="signupService">Service Type:</label>
+                        <select id="signupService" required>
+                            <option value="">Select service</option>
+                            <option value="solar">Solar Installation</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="carpentry">Carpentry</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="painting">Painting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience:</label>
+                        <input type="number" id="experience" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" rows="3" placeholder="Brief description of your services"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-signUp">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Chat Interface -->
+    <div id="chatInterface" class="chat-interface">
+        <div class="chat-header">
+            <span id="chatTitle">Chat with Provider</span>
+            <span onclick="closeChat()" style="cursor: pointer;">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div style="padding: 1rem; text-align: center; color: #666;">
+                Start a conversation...
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatInput(event)">
+        </div>
+    </div>
+    <!-- Contact Box -->
+<div id="providerContactBox" class="contact-box hidden">
+    <h3>Contact Provider</h3>
+    <p id="providerName"></p>
+    <button class="btn">Call</button>
+    <button class="btn">Message</button>
+  </div>
+  
+  </body>
+  </html>
+  
+
+    <script>
+        let currentService = '';
+        let currentProviderType = '';
+        let isLoggedIn = false;
+        let currentUser = null;
+        let searchQuery = '';
+        document.addEventListener('DOMContentLoaded', () => {
+ 
+ 
+            // Bind input manually if needed
+    const input = document.getElementById('searchInput');
+    if (input) {
+        input.addEventListener('input', filterProviders);
+    }
+
+    // Optional: call filterProviders() initially if required
+    // filterProviders(); 
+});
+      
+
+
+
+// Sample data
+        const contractors = {
+            solar: [
+                { name: 'SolarTech Solutions', rating: 4.8, experience: 10, price: '$15,000-50,000', projects: 150  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Green Energy Corp', rating: 4.6, experience: 8, price: '$12,000-45,000', projects: 120 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            electrical: [
+                { name: 'PowerLine Contractors', rating: 4.9, experience: 15, price: '$500-5,000', projects: 300  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Circuit Masters', rating: 4.7, experience: 12, price: '$400-4,500', projects: 250  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            carpentry: [
+                { name: 'WoodCraft Professionals', rating: 4.8, experience: 12, price: '$1,000-15,000', projects: 200  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Custom Carpentry Co', rating: 4.6, experience: 10, price: '$800-12,000', projects: 180  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            plumbing: [
+                { name: 'AquaFlow Systems', rating: 4.7, experience: 14, price: '$200-3,000', projects: 280  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Pipe Masters Ltd', rating: 4.5, experience: 11, price: '$150-2,500', projects: 220  , contactNo: 9821004185, photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            painting: [
+                { name: 'ColorPro Contractors', rating: 4.9, experience: 9, price: '$500-8,000', projects: 160  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Premium Paint Services', rating: 4.6, experience: 7, price: '$400-6,000', projects: 140  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ]
+        };
+
+        const freelancers = {
+            solar: [
+                { name: 'Mike Johnson', rating: 4.5, experience: 5, price: '$50-200/hr', projects: 45 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Sarah Chen', rating: 4.7, experience: 6, price: '$60-180/hr', projects: 52 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]} 
+            ],
+            electrical: [
+                { name: 'John Smith', rating: 4.8, experience: 8, price: '$40-120/hr', projects: 85  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Lisa Rodriguez', rating: 4.6, experience: 6, price: '$35-100/hr', projects: 65  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            carpentry: [
+                { name: 'David Brown', rating: 4.7, experience: 10, price: '$30-80/hr', projects: 95  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Emily Davis', rating: 4.5, experience: 7, price: '$25-70/hr', projects: 75  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]} 
+            ],
+            plumbing: [
+                { name: 'Robert Wilson', rating: 4.9, experience: 12, price: '$35-90/hr', projects: 110 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Maria Garcia', rating: 4.4, experience: 5, price: '$30-75/hr', projects: 60 , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ],
+            painting: [
+                { name: 'Tom Anderson', rating: 4.6, experience: 8, price: '$25-65/hr', projects: 80  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]},
+                { name: 'Jessica Taylor', rating: 4.8, experience: 9, price: '$30-70/hr', projects: 90  , contactNo: 9821004185 , photos: [
+    "images/sarah1.jpg",
+    "images/sarah2.jpg",
+    "images/sarah3.jpg",
+    "images/sarah4.jpg"
+  ]}
+            ]
+        };
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectService(service) {
+            currentService = service;
+            document.getElementById('services').style.display = 'none';
+            document.getElementById('project-types').classList.remove('hidden');
+        }
+
+        function showProviders(type) {
+            currentProviderType = type;
+            document.getElementById('project-types').classList.add('hidden');
+            document.getElementById('providers').style.display = 'block';
+            
+            const title = document.getElementById('providers-title');
+            title.textContent = type === 'contractors' ? 'Available Contractors' : 'Available Freelancers';
+            
+            generateProviderCards();
+        }
+
+        function generateProviderCards() {
+            const grid = document.getElementById('provider-grid');
+            const data = currentProviderType === 'contractors' ? contractors[currentService] : freelancers[currentService];
+            
+            grid.innerHTML = '';
+            
+            data.forEach((provider, index) => {
+                const card = document.createElement('div');
+                card.className = 'provider-card';
+                card.innerHTML = `
+    <div class="provider-header">
+        <div class="provider-avatar">${provider.name.charAt(0)}</div>
+        <div class="provider-info">
+            <h4>${provider.name}</h4>
+            <div class="rating">★★★★★ ${provider.rating}</div>
+            <p>${provider.experience} years experience • ${provider.projects} projects</p>
+            <p><strong>${provider.price}</strong></p>
+        </div>
+    </div>
+    <p>Specialized in ${currentService} services with excellent track record.</p>
+    <div class="provider-actions">
+        <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
+        <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}','${provider.contactNo}')">Contact</button>
+        <button class="btn-small btn-portfolio" onclick="viewPortfolio('${provider.name}')">Portfolio</button>
+        <button class="btn-small btn-calendar" onclick="viewCalendar('${provider.name}')">Calendar</button>
+    </div>
+    <div class="photo-gallery">
+        ${(provider.photos || []).slice(0, 4).map(photo => `
+            <img src="${photo}" alt="Photo of ${provider.name}" class="provider-photo">
+        `).join('')}
+    </div>
+`;
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function toggleServiceFields() {
+    const userType = document.getElementById('signupUserType').value;
+    const serviceFields = document.getElementById('serviceFields');
+    serviceFields.classList.toggle('hidden', userType === 'customer');
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const userType = document.getElementById('userType').value;
+    if (userType === 'contractor') {
+        window.location.href = 'contractor-dashboard.html';
+    } else if (userType === 'freelancer') {
+        window.location.href = 'freelancer-dashboard.html';
+    } else {
+        window.location.href = 'customer-dashboard.html';
+    }
+}
+function handleSignup(e) {
+    e.preventDefault();
+    alert('Registration successful!');
+    closeModal('signupModal');
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const userType = document.getElementById('signupUserType').value;
+    const service = document.getElementById('signupService').value;
+
+
+    // Simulate signup
+    isLoggedIn = true;
+     currentUser = { name, email, userType, service };
+
+    const newWorker = {
+        name,
+        rating: 4.0, // default
+        experience: 1,
+        price: 'To be set',
+        projects: 0,
+        contactNo: 'N/A',
+        photos: []
+    };
+
+    // Add to data
+    if (userType === 'contractor') {
+        if (!contractors[service]) contractors[service] = [];
+        contractors[service].push(newWorker);
+    } else if (userType === 'freelancer') {
+        if (!freelancers[service]) freelancers[service] = [];
+        freelancers[service].push(newWorker);
+    }
+
+    alert('Registration successful!');
+    closeModal('signupModal');
+
+    // If same service and type is selected, re-render cards
+    if (currentService === service && currentProviderType === (userType === 'contractor' ? 'contractors' : 'freelancers')) {
+        generateProviderCards();
+    }
+}
+
+function filterProviders() {
+    const input = document.getElementById('searchInput');
+    if (!input) {
+        console.warn('Search input element not found.');
+        return;
+    }
+
+    const query = input.value.trim().toLowerCase();
+
+    // Check if currentService and currentProviderType are selected
+    if (!currentService || !currentProviderType) {
+        console.warn('Service or provider type not selected.');
+        return;
+    }
+
+    const data = currentProviderType === 'contractors' 
+        ? contractors[currentService] || []
+        : freelancers[currentService] || [];
+
+    const filtered = data.filter(provider =>
+        provider.name.toLowerCase().includes(query) ||
+        provider.price.toLowerCase().includes(query) ||
+        (provider.skills && provider.skills.some(skill => skill.toLowerCase().includes(query))) || 
+        (provider.description && provider.description.toLowerCase().includes(query)) ||
+        (currentService && currentService.toLowerCase().includes(query))
+    );
+
+    renderProviders(filtered);
+}
+
+
+function renderProviders(providersToRender = null) {
+    const grid = document.getElementById('provider-grid');
+    const data = providersToRender || (currentProviderType === 'contractors' ? contractors[currentService] : freelancers[currentService]);
+
+    grid.innerHTML = '';
+
+    data.forEach(provider => {
+        const card = document.createElement('div');
+        card.className = 'provider-card';
+        card.innerHTML = `
+            <div class="provider-header">
+                <div class="provider-avatar">${provider.name.charAt(0)}</div>
+                <div class="provider-info">
+                    <h4>${provider.name}</h4>
+                    <div class="rating">★★★★★ ${provider.rating}</div>
+                    <p>${provider.experience} years experience • ${provider.projects} projects</p>
+                    <p><strong>${provider.price}</strong></p>
+                </div>
+            </div>
+            <p>Specialized in ${currentService} services with excellent track record.</p>
+            <div class="provider-actions">
+                <button class="btn-small btn-chat" onclick="openChat('${provider.name}')">Chat</button>
+                <button class="btn-small btn-contact" onclick="contactProvider('${provider.name}', '${provider.contactNo}')">Contact</button>
+                <button class="btn-small btn-portfolio" onclick="viewPortfolio('${provider.name}')">Portfolio</button>
+                <button class="btn-small btn-calendar" onclick="viewCalendar('${provider.name}')">Calendar</button>
+            </div>
+            <div class="photo-gallery">
+                ${(provider.photos || []).slice(0, 4).map(photo => `
+                    <img src="${photo}" alt="Photo of ${provider.name}" class="provider-photo">
+                `).join('')}
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+
+        function openChat(providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to start a chat');
+                return;
+            }
+            
+            document.getElementById('chatTitle').textContent = `Chat with ${providerName}`;
+            document.getElementById('chatInterface').style.display = 'block';
+        }
+
+        function closeChat() {
+            document.getElementById('chatInterface').style.display = 'none';
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                
+                if (message) {
+                    const messagesDiv = document.getElementById('chatMessages');
+                    messagesDiv.innerHTML += `
+                        <div style="margin-bottom: 1rem;">
+                            <strong>You:</strong> ${message}
+                        </div>
+                    `;
+                    input.value = '';
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    
+                    // Simulate response
+                    setTimeout(() => {
+                        messagesDiv.innerHTML += `
+                            <div style="margin-bottom: 1rem; color: #666;">
+                                <strong>Provider:</strong> Thanks for your message! I'll get back to you shortly.
+                            </div>
+                        `;
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }, 1000);
+                }
+            }
+        }
+
+        function contactProvider(providerName, providerContactNo) { 
+    if (!isLoggedIn) {
+        alert('Please login to contact providers');
+        return;
+    }
+
+    const contactBox = document.getElementById('providerContactBox');
+    const providerNameText = document.getElementById('providerName');
+    const contactNoText = document.getElementById('providerContactNo');
+
+    if (!contactBox || !providerNameText || !contactNoText) {
+        console.error('One or more contact elements not found in the DOM.');
+        return;
+    }
+
+    providerNameText.textContent = `You are contacting: ${providerName}`;
+    contactNoText.textContent = `Contact Number: ${providerContactNo}`;
+
+    contactBox.classList.remove('hidden');
+    contactBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+        function viewPortfolio(providerName) {
+            alert(`Opening portfolio for ${providerName}...`);
+        }
+
+        function viewCalendar(providerName) {
+            if (!isLoggedIn) {
+                alert('Please login to view calendar');
+                return;
+            }
+            alert(`Opening calendar for ${providerName}...`);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+        function showSection(sectionId) {
+    // सर्व section लपवा
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+    
+    // हवा असलेला section दाखवा
+    const target = document.getElementById(sectionId);
+    if (target) target.classList.remove("hidden");
+
+    // स्क्रोलिंगसाठी (optional)
+    target?.scrollIntoView({ behavior: "smooth" });
+  }
+  function loadPortfolio(photos) {
+    const portfolio = document.getElementById("portfolioSection");
+    portfolio.innerHTML = ''; // Clear previous images
+
+    photos.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "Work Photo";
+      img.className = "thumbnail";
+      img.style.width = "150px";
+      img.style.height = "auto";
+      img.style.cursor = "pointer";
+      img.onclick = function () {
+        openImage(src);
+      };
+      portfolio.appendChild(img);
+    });
+  }
+
+  
+    </script>
+</body>
+</html>
